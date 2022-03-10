@@ -1,0 +1,7 @@
+nmap: tool is used to check the remote user details using the nmap
+$ nmap -A IP-address --> to check the 
+$ netstat -tunlo
+
+$ ssh -vvv user@ip --> for debug the server
+$ ssh -vvv -p 2020 user@ip --> to pass the different port to do ssh
+$ telnet ip port --> 
