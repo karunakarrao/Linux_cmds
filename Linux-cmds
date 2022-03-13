@@ -5,3 +5,7 @@ $ netstat -tunlo
 $ ssh -vvv user@ip --> for debug the server
 $ ssh -vvv -p 2020 user@ip --> to pass the different port to do ssh
 $ telnet ip port --> 
+$ adduser user sudo --> to add to the sudo users list
+$ lsof |grep abc --> to check the file is opened or not
+$ lsattr -> 
+$ chattr
