@@ -1,0 +1,328 @@
+===================================================================================================================
+				:::Scripting Basics:::
+===================================================================================================================
+
+echo:
+----------------------------------------
+to print the string or numberic data
+		exmple:
+		echo "my age is 32"
+		echo 22/7 
+		echo 
+
+Variable:
+----------------------------------------
+	1. case sensitive 
+	2. only "_" is allowed, "-" not allowed 
+		exmple: 
+		MISSION_NAME != mission_name
+		"mission_name" is correct
+		"mission-name" is incorrect
+	3. no space while defining the variable
+		exmple:
+		A=10 --> correct
+		B=20 --> correct
+		Name="raj" --> correct 
+
+		Name = "kumar" --> incorrect\
+
+Input: read
+-----------------------------------------
+to read input from enduser in to program, need to use "read" command 
+	read -p " please enter your name " $1
+	
+		$0 is script 
+		$1 is first argument as an input
+		$2 is second 
+		$3 is third 
+$#    Stores the number of command-line arguments that were passed to the shell program.
+$?    Stores the exit value of the last command that was executed.
+$0    Stores the first word of the entered command (the name of the shell program).
+$*    Stores all the arguments that were entered on the command line ($1 $2 ...).
+"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
+	
+	eample:
+	----------------
+	read -p "enter value 1 to 12" choice
+	if [ "$#" -eq 0 ] ; 
+	then
+ 		echo -e "No argument."
+  		echo -e "Write a number between 1 and 12."
+  		exit 1
+	done
+
+Arithmetic:
+------------------------------------------
+	1. for arthemetic operation we user "expr" command. 
+	2. we must use space between each variable +, -, *, /,^
+		example:
+		A=10
+		B=20 
+		expr $A + $B
+		expr $B - $A
+		expr $A \* $B
+		expr $A / $B
+	3. if we write between "((  ))" no space is required, we can write freely
+		example:
+		A=10
+		B=20
+		echo $((A+B)) | echo $((A - B))| echo $(( A * B))
+	4. for float caliculation need to use package tool "bc"
+		exmple:
+		echo $((22/7)) --> o/p: 3 
+		echo 22/7 |bc -l --> o/p: 3.14285714285714285714
+
+Conditional Logic:
+-------------------
+
+Conditional operators:
+----------------------------------------
+	1. conditons are written in [ ] or [[ ]] 
+	2. list of operators 
+	String: string operator used for checking [ =, != ]
+		example:
+		[ "abc" = "abc" ] 
+		[ "abc" != "abc" ]
+	numbers: operator used to check condition [ -eq, -ne, -gt, -lt]
+		example:
+		[ 5 -eq 5 ]
+		[ 5 -ne 5 ]
+		[ 6 -gt 5 ]
+		[ 5 -lt 6 ]
+
+String Comparisons
++------------------+-----------------------------------------------+
+|   Conditions     |                    Description                |
++------------------+-----------------------------------------------+
+| Str1 = Str2      | True if the strings are equal                 |                            
+| Str1 != Str2     | True if the strings are not equal             |
+| -n Str1          | True if the string is not null                | 
+| -z Str1          | True if the string is null                    |                             
++------------------+-----------------------------------------------+
+Numeric Comparisons
++------------------+-----------------------------------------------+
+|   Conditions     |                    Description                |
++------------------+-----------------------------------------------+
+| expr1 -eq expr2  | True if the expressions are equal             |
+| expr1 -ne expr2  | True if the expressions are not equal         |
+| expr1 -gt expr2  | True if expr1 is greater than expr2           |
+| expr1 -ge expr2  | True if expr1 is greater than equal to expr2  |
+| expr1 -lt expr2  | True if expr1 is less than expr2              | 
+| expr1 -le expr2  | True if expr1 is less than or equal to expr2  |
+| !expr1           | Negates the result of the expression          |            
++------------------+-----------------------------------------------+
+	
+
+if:
+-----------------------------------------
+the conditon is met then the logic will exicute esle no
+	1. conditions are writen in [ ]
+	2. must use space between conditions and braces
+		example:
+		if [ $A -gt $B ]
+	3. if we have multiple conditions we can user [[ ]] and 
+		example:
+		if [[ $A -gt $B && $A -lt $C ]] --> and condition
+		if [[ $A -gt $B || $A -lt $C ]] --> or condition
+	4. linus file operatios 
+		[ -e FILE ]--> if file exists
+		[ -d FILE ]--> if file exists and is a directory
+		[ -s FILE ]--> If file exists and has size greater than 0
+		[ -x FILE ]--> If the file is executable
+		[ -w FILE ]--> If the file is writeable
+syntax:
+	exmaple:1
+	------------------------------------------
+		if [ $rocket_status = "failed" ]
+		then
+			echo " Rocket debug is exicuting"
+
+		elfi [ $rocket_status = "failed" ]
+		then
+			echo " Rocket launch successful"
+		else 
+			echo "the status is not failed or success"
+		fi
+	---------------------------------------------
+	example:2
+	--------------------------------------------
+		if [ -e filename ]
+		then
+			echo "file exists"
+		else
+			echo "file not exists"
+		fi
+
+for: 
+--------------------------------------------------------
+for is used to check from the range
+	
+	
+	syntax:
+	example:1
+	----------------------------------------
+	for mission in $(cat mission-names.txt)
+	do 
+		echo " Mission name: $mission"
+	done
+	---------------------------------------
+	example:2
+	--------------------------------------
+	for mission in 1 2 3 4 5 6
+	do
+		echo " mission-$mission"
+	done
+	---------------------------------------
+	example:3
+	-------------------------------------
+	for mission in {0..100}
+	do	
+		echo "$mission"
+	done
+	-------------------------------------
+	example:4 we can write like below also
+	-----------------------------------------
+	for (( mission = 0 ; mission <= 100; mission++ ))
+	do
+		echo "$mission"
+	done
+	----------------------------------------
+	example:5 : real time
+	-----------------------------
+	for package in $(cat install-packages.txt)
+	do
+		sudo apt-get –y install $package
+	done
+	------------------------------
+	example:6 : real time
+	-----------------------------
+	for server in $(cat servers.txt)
+	do
+		ssh $server "uptime"
+	done
+	------------------------------
+	example:7 : real time
+	-----------------------------
+	for file in $(ls)
+	do
+		echo Line count of $file is $(cat $file | wc -l)
+	done
+	-----------------------------
+	#!/bin/bash
+
+	list=(1 2 3 4 5)
+
+	for i in ${list[@]}
+	do
+    		echo $i
+	done
+
+
+while:
+-----------------------------------
+this loop will end only when the condition is satisfied else it will be an infinity loop
+
+	example:
+	------------------
+	while [ condition ]
+	do 
+		<< logic ..>>
+	done
+	----------------------
+
+
+	while true
+	do
+		echo "1. Shutdown"
+		echo "2. Restart"
+		echo "3. Exit Menu"
+		
+		read –p "Enter your choice: " choice
+
+		if [ $choice -eq 1 ]
+		then
+			shutdown now
+		elif [ $choice -eq 2 ]
+		then
+			shutdown –r now
+		elif [ $choice -eq 3 ]
+		then
+			break
+		else
+			continue
+		fi
+	done
+
+case:
+----------------------------------------
+we can use case statement in above script 
+
+	example:1
+	----------------------
+	while true
+	do 
+		echo "1. Shutdown"
+		echo "2. Restart"
+		echo "3. Exit Menu"
+		
+		read -p "Enter your choice: " choice
+		
+		case $choice in
+			1) shutdown now ;;
+			2) shutdown -r now ;;
+			3) break ;;
+			*) continue ;;
+		esac
+	done
+
+exit code: can be find using "$?"
+-----------------------------------
+after exicuting every command we will get one exit code value which is used to check the staus of the command
+
+	example:
+	------------------------
+	$ ls ; echo $?; --> o/p: 0 | this will give the exit code for ls command
+
+	example:1
+	--------------------
+	$ lsss; echo $? --> o/p: >0 | failed 
+
+functions:
+-----------------------------------------------
+how define a function to remove the duplication of code
+	1. function is defined as (ex: function function-name(){ << logic >> })
+	2. we can pass arguments in to function as $1 $2 and so on
+	3. we can that funcation using funcation name followed by arguments (ex: funcation-name $1 $2 )
+
+	syntax:
+	------------------
+	function <function-name>(){
+	...
+	...
+	...
+	}
+
+	example:1 
+	-------------------------
+	function dir_check() {
+	    for name in $1
+	    do 
+     		if [ -d $2/$name ]
+       		then
+            		continue
+        	else
+            		echo "directory $name not available"
+            		mkdir -p $2/$name
+                	if [ $? -eq 0 ]
+               		then
+                    		echo "Directory Created"
+                	else
+                    	echo "Failed to Create Directory"
+                	fi
+       		 fi
+   	    done
+	}
+
+	dir_check $tm_dir_list $ndrx_home
+	dir_check $qdata_dir_list $ndrx_home
+	-----------------------  
