@@ -16,7 +16,7 @@ RPM ( RedHat Package Manager)
 -p : List capabilities this package provides.
 -R : List capabilities on which this package depends..
 -e : Erase
-–nodeps : Do not check dependencies
+â€“nodeps : Do not check dependencies
 -f : File
 --------------------------------------------------------------------------------------
  
@@ -45,7 +45,7 @@ RPM ( RedHat Package Manager)
 9. How to Upgrade a RPM Package	--> 
 # rpm -Uvh nx-3.5.0-2.el6.centos.i686.rpm
 
-If we want to upgrade any RPM package “–U” (upgrade) option will be used. One of the major advantages of using this option is that it will not only upgrade the latest version of any package, but it will also maintain the backup of the older package so that in case if the newer upgraded package does not run the previously installed package can be used again.
+If we want to upgrade any RPM package â€œâ€“Uâ€ (upgrade) option will be used. One of the major advantages of using this option is that it will not only upgrade the latest version of any package, but it will also maintain the backup of the older package so that in case if the newer upgraded package does not run the previously installed package can be used again.
 
 10. How to Remove a RPM Package--> 
 # rpm -evv nx
@@ -55,12 +55,12 @@ To un-install an RPM package, for example we use the package name nx, not the or
 11. How to Remove an RPM Package Without Dependencies--> 
 # rpm -ev --nodeps vsftpd
 
-The –nodeps (Do not check dependencies) option forcefully remove the rpm package from the system. But keep in mind removing particular package may break other working applications.
+The â€“nodeps (Do not check dependencies) option forcefully remove the rpm package from the system. But keep in mind removing particular package may break other working applications.
 
 12. How to Query a file that belongs which RPM Package--> 
 # rpm -qf /usr/bin/htpasswd
 
-Let’s say, you have list of files and you would like to find out which package belongs to these files. For example, the following command with -qf (query file) option will show you a file /usr/bin/htpasswd is own by package httpd-tools-2.2.15-15.el6.centos.1.i686.
+Letâ€™s say, you have list of files and you would like to find out which package belongs to these files. For example, the following command with -qf (query file) option will show you a file /usr/bin/htpasswd is own by package httpd-tools-2.2.15-15.el6.centos.1.i686.
 
 13. How to Query a Information of Installed RPM Package--> 
 # rpm -qi vsftpd
@@ -160,7 +160,7 @@ Uname : uname' prints information about the machine and operating system it is r
 $ uname -a --> all the system information along with hardware
 Linux 11gr2.rhel5.com 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:12 EDT 2008 i686 i686 i386 GNU/Linux
 
-The machine hardware name lists whether your system is 32-bit (“i686” or “i386”) or 64-bit (“x86_64”). Notice that the processor type and hardware platform also indicates 32-bit or 64-bit.
+The machine hardware name lists whether your system is 32-bit (â€œi686â€ or â€œi386â€) or 64-bit (â€œx86_64â€). Notice that the processor type and hardware platform also indicates 32-bit or 64-bit.
 -------------------------------------------------------------------------------------
 sysctl:
 ---------
@@ -247,3 +247,17 @@ $ systemctl enable sshd --> enable to start automatically when system reboot
 $ systemctl disable sshd --> disable to start automatically when system reboot
 
 $ systemctl 
+
+-----------------------------------------------------
+
+nmap: tool is used to check the remote user details using the nmap
+$ nmap -A IP-address --> to check the 
+$ netstat -tunlo
+
+$ ssh -vvv user@ip --> for debug the server
+$ ssh -vvv -p 2020 user@ip --> to pass the different port to do ssh
+$ telnet ip port --> 
+$ adduser user sudo --> to add to the sudo users list
+$ lsof |grep abc --> to check the file is opened or not
+$ lsattr -> 
+$ chattr
