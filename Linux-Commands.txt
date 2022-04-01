@@ -1,0 +1,249 @@
+*****************************************************************
+			Linux-Commands
+*****************************************************************
+
+$ ls /etc/*release* --> to check what OS you are on 
+
+$ cat /etc/*release* --> 
+
+$ ip addr show --> to check the ip of the machine
+RPM ( RedHat Package Manager)
+-------------------------------------------------------------------------------------
+-i : install a package
+-v : verbose for a nicer display
+-h : print hash marks as the package archive is unpacked.
+-q : Query a package
+-p : List capabilities this package provides.
+-R : List capabilities on which this package depends..
+-e : Erase
+–nodeps : Do not check dependencies
+-f : File
+--------------------------------------------------------------------------------------
+ 
+# rpm --checksig pidgin-2.7.9-5.el6.2.i686.rpm --> How to Check an RPM Signature Package
+
+# rpm -ivh pidgin-2.7.9-5.el6.2.i686.rpm --> Install an RPM Package
+
+3. How to check dependencies of RPM Package before Installing--> 
+# rpm -qpR BitTorrent-5.2.2-1-Python2.4.noarch.rpm
+
+4. How to Install a RPM Package Without Dependencies--> 
+# rpm -ivh --nodeps BitTorrent-5.2.2-1-Python2.4.noarch.rpm
+
+5. How to check an Installed RPM Package--> 
+# rpm -q BitTorrent
+
+6. How to List all files of an installed RPM package--> 
+# rpm -ql BitTorrent
+
+7. How to List Recently Installed RPM Packages--> 
+# rpm -qa --last
+
+8. How to List All Installed RPM Packages--> 
+# rpm -qa
+
+9. How to Upgrade a RPM Package	--> 
+# rpm -Uvh nx-3.5.0-2.el6.centos.i686.rpm
+
+If we want to upgrade any RPM package “–U” (upgrade) option will be used. One of the major advantages of using this option is that it will not only upgrade the latest version of any package, but it will also maintain the backup of the older package so that in case if the newer upgraded package does not run the previously installed package can be used again.
+
+10. How to Remove a RPM Package--> 
+# rpm -evv nx
+
+To un-install an RPM package, for example we use the package name nx, not the original package name nx-3.5.0-2.el6.centos.i686.rpm. The -e (erase) option is used to remove package.
+
+11. How to Remove an RPM Package Without Dependencies--> 
+# rpm -ev --nodeps vsftpd
+
+The –nodeps (Do not check dependencies) option forcefully remove the rpm package from the system. But keep in mind removing particular package may break other working applications.
+
+12. How to Query a file that belongs which RPM Package--> 
+# rpm -qf /usr/bin/htpasswd
+
+Let’s say, you have list of files and you would like to find out which package belongs to these files. For example, the following command with -qf (query file) option will show you a file /usr/bin/htpasswd is own by package httpd-tools-2.2.15-15.el6.centos.1.i686.
+
+13. How to Query a Information of Installed RPM Package--> 
+# rpm -qi vsftpd
+
+14. Get the Information of RPM Package Before Installin--> 
+# rpm -qip sqlbuddy-1.3.3-1.noarch.rpm
+
+15. How to Query documentation of Installed RPM Package--> 
+# rpm -qdf /usr/bin/vmstat
+
+To get the list of available documentation of an installed package, use the following command with option -qdf (query document file) will display the manual pages related to vmstat package.
+
+16. How to Verify a RPM Package--> 
+# rpm -Vp sqlbuddy-1.3.3-1.noarch.rpm
+
+
+17. How to Verify all RPM Packages--> 
+# rpm -Va
+
+18. How to Import an RPM GPG key--> 
+# rpm --import /etc/pki/rpm-gpg/RPM-GPG-KEY-CentOS-6
+
+To verify RHEL/CentOS/Fedora packages, you must import the GPG key. To do so, execute the following command. It will import CentOS 6 GPG key.
+
+19. How to List all Imported RPM GPG keys--> 
+# rpm -qa gpg-pubkey*
+
+
+20. How To rebuild Corrupted RPM Database
+Sometimes rpm database gets corrupted and stops all the functionality of rpm and other applications on the system. So, at the time we need to rebuild the rpm database and restore it with the help of following command.
+
+[root@tecmint]# cd /var/lib
+[root@tecmint]# rm __db*
+[root@tecmint]# rpm --rebuilddb
+[root@tecmint]# rpmdb_verify Packages
+
+---------------------------------------------------------------------------
+
+YUM install in Linux
+YUM (Yellowdog Updater Modified) is an open source command-line as well as graphical based package management tool for RPM (RedHat Package Manager) based Linux systems. 
+---------------------------------------------------------------------------
+1. Install a Package with YUM	
+--> # yum install firefox 
+--> # yum -y install firefox
+
+2. Removing a Package with YUM	
+--> # yum remove firefox
+--> # yum -y remove firefox
+
+3. Updating a Package using YUM
+--> # yum update mysql
+
+4. List a Package using YUM --> # yum list openssh
+
+5. Search for a Package using YUM--> # yum search vsftpd
+
+6. Get Information of a Package using YUM --> # yum info firefox
+
+7. List all Available Packages using YUM --> # yum list | less
+
+8. List all Installed Packages using YUM --> # yum list installed | less
+
+9. Yum Provides Function --> # yum provides /etc/httpd/conf/httpd.conf
+
+10. Check for Available Updates using Yum --> # yum check-update
+
+11. Update System using Yum --> # yum update
+
+12. List all available Group Packages --> # yum grouplist
+
+13. Install a Group Packages --> # yum groupinstall 'MySQL Database'
+
+14. Update a Group Packages --> # yum groupupdate 'DNS Name Server'
+
+16. List all Enabled and Disabled Yum Repositories --> # yum repolist all
+
+18. Interactive Yum Shell --> # yum shell
+
+19. Clean Yum Cache --> # yum clean all
+
+20. View History of Yum --> # yum history
+
+21. yum repolist --> from where yum is getting the brinaries downloading
+
+22. $ ls /etc/yum.repos.d/ --> it contains the links where the downloades are pulled in
+
+23. $		
+
+
+
+$ neat --> this will open network configuration. GUI
+$ service network restart --> to restart network adapter settings
+
+
+Uname : uname' prints information about the machine and operating system it is run on. 
+
+$ uname -a --> all the system information along with hardware
+Linux 11gr2.rhel5.com 2.6.18-92.el5 #1 SMP Tue Apr 29 13:16:12 EDT 2008 i686 i686 i386 GNU/Linux
+
+The machine hardware name lists whether your system is 32-bit (“i686” or “i386”) or 64-bit (“x86_64”). Notice that the processor type and hardware platform also indicates 32-bit or 64-bit.
+-------------------------------------------------------------------------------------
+sysctl:
+---------
+sysctl - configure kernel parameters at runtime
+
+DESCRIPTION
+       sysctl  is  used  to  modify  kernel parameters at runtime.  The parameters available are those listed under /proc/sys/.  Procfs is required for
+       sysctl(8) support in Linux.  You can use sysctl(8) to both read and write sysctl data.
+
+EXAMPLES
+       /sbin/sysctl -a
+
+       /sbin/sysctl -n kernel.hostname
+
+       /sbin/sysctl -w kernel.domainname="example.com"
+
+       /sbin/sysctl -p /etc/sysctl.conf
+
+any changes do to /etc/sysctl.conf file we can refresh the file content by using the command 
+
+       -n     Use this option to disable printing of the key name when printing values.
+
+       -e     Use this option to ignore errors about unknown keys.
+
+       -N     Use this option to only print the names. It may be useful with shells that have programmable completion.
+
+       -q     Use this option to not display the values set to stdout.
+
+       -w     Use this option when you want to change a sysctl setting.
+
+       -p     Load in sysctl settings from the file specified or /etc/sysctl.conf if none given.  Specifying - as  filename  means  reading  data  from
+              standard input.
+
+       -a     Display all values currently available. Please see the NOTES.
+
+       -A     Display all values currently available in table form. Please see the NOTES.
+
+
+
+--------------------------------------------------------------------------------
+watch:  execute a program periodically, showing output fullscreen
+
+ watch [-dhntv] [--differences[=cumulative]] [--help] [--interval=<n>] [--no-title] [--version] <command>
+  -d, --differences[=cumulative]        highlight changes between updates
+                (cumulative means highlighting is cumulative)
+  -h, --help                            print a summary of the options
+  -n, --interval=<seconds>              seconds to wait between updates
+  -v, --version                         print the version number
+  -t, --no-title                        turns off showing the header
+
+
+$ watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15' --> this command is to wactch the ps command into a realtime process reporter
+
+Every 1.0s: ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15                                                                      Sat Aug 19 17:10:11 2017
+
+  PID USER     CMD                         %MEM %CPU
+ 9851 oracle   watch -n 1 ps -e -o pid,una  0.0  1.5
+ 7131 oracle   /u01/app/oracle/product/11.  0.9  1.0
+ 8920 oracle   /usr/bin/java -Djava.util.l  3.0  0.3
+ 5922 root     /usr/sbin/vmtoolsd           0.1  0.1
+ 6831 root     hald-addon-storage: polling  0.0  0.1
+ 7273 oracle   /u01/app/oracle/product/11.  0.5  0.0
+ 6436 root     pcscd                        0.0  0.0
+ 7098 root     /usr/libexec/gdm-rh-securit  0.1  0.0
+ 9463 oracle   sshd: oracle@pts/3           0.0  0.0
+  550 root     [kjournald]                  0.0  0.0
+ 6808 68       hald                         0.1  0.0
+ 6247 root     irqbalance                   0.0  0.0
+    1 root     init [5]                     0.0  0.0
+  259 root     [pdflush]                    0.0  0.0
+
+--------------------------------------------------------------------------------
+systemctl : Controls systemd system and service manager
+---------
+
+$ systemctl stop sshd --> stop sshd service
+
+$ systemctl start sshd --> start 
+
+$ systemctl status sshd --> status check 
+
+$ systemctl enable sshd --> enable to start automatically when system reboot
+
+$ systemctl disable sshd --> disable to start automatically when system reboot
+
+$ systemctl 

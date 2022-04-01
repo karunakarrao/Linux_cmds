@@ -1,0 +1,1066 @@
+*****************************************************************
+			Solaris-Commands
+*****************************************************************
+$ echo $SHELL --> to check which shell you are in 
+
+$ pwd --->present working directory
+
+$ ls ---> list all files and directories
+
+$ ls -ltr--> list all files and directories with time stamp
+
+$ ls -lc --> list all files with actual time stamp
+
+$ ls -i file1 --> to see the inode value
+
+$ ls -ld */ --> it will list only directories 
+or
+$ ls -la |grep '^d' --> List dirctories + Hiden
+
+$ ls * ---> list all files and directories and their content
+
+$ cksum <filename> ---> checksum and count the bytes in a file. to verify the file copy over the network is completed successfully or not by chekcing the cksum value
+-----------------------------------------------------------------------------------
+tree: list contents of directories in a tree-like format.
+
+$ tree -d --> Listing a directories
+
+$ tree -f --> listing the file with full path
+
+$ tree -if --> to remove the tree lines and give the output
+
+$ tree software/ --> list the file in a directory
+
+       -p     Print the protections for each file (as per ls -l).
+
+       -s     Print the size of each file along with the name.
+
+       -u     Print  the  username, or UID # if no username is available,
+              of the file.
+
+       -g     Print the group name, or GID # if no group name  is  avail-
+              able, of the file.
+
+       -d     List directories only.
+
+       -f     Prints the full path prefix for each file.
+-----------------------------------------------------------------------------------
+$ touch file1 --> to create a file
+
+$ touch file1 file2 --> to create a mutipule files at a time
+
+$ cat file1 --> to view the file content
+
+$ cat > file1 --> to create a file1 and provide the content and press Ctrl + c
+-----------------------------------------------------------------------------------
+$ mkdir dir1 -> to create a directory
+
+$ mkdir -p dir1/dir2/dir3 --> to create multipule directories at a time
+-----------------------------------------------------------------------------------
+$ cp file1 file2 -> to copy the file1 to file2
+
+$ cp -p file1 file2 -> to copy the file with same time stamp( ls -lc) (-p will preserve time stamp)
+
+$ cp -r dir1 dir2 -> to copy the directory 
+-----------------------------------------------------------------------------------
+$ rm file1 -> to remove a file
+
+$ rm file1 file2 -> to remove multiple files at a time
+
+$ rmdir dir -> to remove the empty dirctory
+
+$ rm -ri dir1 --> it will recorcively delets the directories with interactive mode 
+-----------------------------------------------------------------------------------
+$ mv file1 file2 -> it will rename the dirctory with file2
+
+$ mv file1 dir/file2 -> it will move the file to dir/file2 dirctory
+-----------------------------------------------------------------------------------
+$ du -h ---> to see the disk usage in human readable format fo a directory
+
+$ du -k -> to see the disk usage in kilobytes
+-----------------------------------------------------------------------------------
+$ which cmd-name --> to see the cmd location
+
+$ who ---> to see how many users loged to the solaris machine
+
+$ uptime-> time and the server started time and the totals time
+
+$ date --> to see the current date and time stap details
+
+$ finger -> to see how many users loged to the solaris machine
+
+$ id -> to see the uid and gid names
+
+$ who am i -> to see the user who is using
+
+$ who -r ---> to see the run level
+
+$ chkconfig --list --> to check run levels defined to users
+
+$ systemctl list-unit-files --> will give the status of services 
+-----------------------------------------------------------------------------------
+
+$write username -> to send a text to the user who is using the same system
+
+$ mail  -> to check the recived mails
+
+$ mail username/mailid --> to send a maill
+subject:
+cc:
+bcc:
+
+$ paste file1 file2 file3 > file4 --> will past the files in the horizontal format..
+------------------------------------------------------------------------------------
+$ cat /etc/shadow --> it will store the password info ( root permision )
+
+$ ps -ef | grep java --> to see all java processes
+
+$ ps -ef | grep httpd ---> to see all apahe processes
+
+$ ps -ef | grep 
+
+$ ps -ef | grep ssh | grep -v grep | awk '{print $2} --> it will print the 2nd position values
+
+$ PID=`ps -ef | grep ssh | grep -v grep | awk '{print $2}'`--> to assign to a variable 
+
+$ echo $PID --> to see the PID values
+------------------------------------------------------------------------------------
+$ fuser -f file1.lok -> to see the lock file. (/usr/sbin)
+
+$ /usr/local/bin/lsof --> it will show the list of open files
+
+$ /usr/local/bin/lsof -i|grep portno  -->to will show all the open files for that particular port
+
+$ pwdx `lsof -i|grep 80|awk '{print $2}'` --> it will print the PID and location it is exicuted 
+
+------------------------------------------------------------------------------------
+Syntax: tar <operation> [options]
+
+$ tar -cvf filename.b * --> it will tar all the file in that present directory
+
+$ tar -tvf filename.tar --> to list the content of the tar file
+
+$ tar -xvf filename.tar -> it will extract the tar files
+
+$ tar -uvf filename.tar abc.txt  -> to extract only selected files from the tar file
+
+$ tar -rvf filename.tar xyz.txt --> to append the files to tar file 
+
+$ tar -xvf test1.tar -C test1/ --> to extrace the tar file content in different directory path
+ 
+       -k, --keep-old-files
+              keep existing files; don’t overwrite them from archive
+       -d, --diff, --compare
+              find differences between archive and file system
+       -r, --append
+              append files to the end of an archive
+       -t, --list
+              list the contents of an archive
+       -u, --update
+       --delete
+              delete from the archive (not for use on mag tapes!)
+       -p, --preserve-permissions
+              extract all protection information
+       --atime-preserve
+              don’t change access times on dumped files
+       --keep-newer-files
+              do not overwrite files which are newer than the archive
+       -K, --starting-file F
+              begin at file F in the archive
+       --owner USER
+              change owner of extraced files to USER
+       -Z, --compress, --uncompress
+              filter the archive through compress
+       -z, --gzip, --gunzip, --ungzip
+              filter the archive through gzip
+
+$ gzip filename --> to zip a file
+
+$ gzip -d filename -> to unzip the file
+
+$ gunzip filename -> to unzip the file
+------------------------------------------------------------------------------------
+$ ping -s ipaddress -> to know ip address or DNS name 
+
+Usage: ping [-LRUbdfnqrvVaA] [-c count] [-i interval] [-w deadline]
+            [-p pattern] [-s packetsize] [-t ttl] [-I interface or address]
+            [-M mtu discovery hint] [-S sndbuf]
+            [ -T timestamp option ] [ -Q tos ] [hop1 ...] destination
+
+
+$ nslookup ipaddress --> to DNS name
+
+$ nslookup google.com ---> it will show the ip address
+
+$ ifconfig -a ---> to see the ip configuration of the system (/usr/sbin)
+
+o/p:
+-----
+lo0: flags=2001000849<UP,LOOPBACK,RUNNING,MULTICAST,IPv4,VIRTUAL> mtu 8232 index 1
+        inet 127.0.0.1 netmask ff000000
+e1000g0: flags=1000843<UP,BROADCAST,RUNNING,MULTICAST,IPv4> mtu 1500 index 2
+        inet 192.168.1.220 netmask ffffff00 broadcast 192.168.1.255
+------------------------------------------------------------------------------------
+df:
+-----
+$ df -h 
+-> to see the file system size ( in human readable format), like bellow it will show the details.
+
+Filesystem             size   used  avail capacity  Mounted on
+------------------------------------------------------------------------------------
+/dev/dsk/c0t0d0s0      2.0G   451M   1.5G    23%    /
+/devices                 0K     0K     0K     0%    /devices
+ctfs                     0K     0K     0K     0%    /system/contract
+proc                     0K     0K     0K     0%    /proc
+mnttab                   0K     0K     0K     0%    /etc/mnttab
+swap                   3.1G   984K   3.1G     1%    /etc/svc/volatile
+objfs                    0K     0K     0K     0%    /system/object
+sharefs                  0K     0K     0K     0%    /etc/dfs/sharetab
+/dev/dsk/c0t0d0s6      6.0G   3.4G   2.5G    58%    /usr
+/usr/lib/libc/libc_hwcap1.so.1
+                       6.0G   3.4G   2.5G    58%    /lib/libc.so.1
+fd                       0K     0K     0K     0%    /dev/fd
+/dev/dsk/c0t0d0s1      2.9G   1.2G   1.7G    41%    /var
+/dev/dsk/c0t0d0s4       10G   349M   9.8G     4%    /tmp
+swap                   3.1G    32K   3.1G     1%    /var/run
+/dev/dsk/c0t0d0s5       38G    10G    27G    28%    /opt
+/dev/dsk/c0t0d0s7      4.2G   4.3M   4.1G     1%    /export/home
+
+$ df -k -> to see the file system size in kilo bytes
+--------------------------------------------------------------------------------------
+chmod:(ugoa -->user,group,other,all)(rwxXsStT)
+-------
+
+$ chmod u+rwx filename 
+$ chmod -R ugo+rw <file/directory> --> to change the permissions of all users, it will only add the permissions, it will not remove any permissions. 
+or
+$ chmod -R a+rw <file/directory> --> you can wrinte like this aslo 
+
+The setuid (set user id) is a permission bit, that allows the users to exec a program with the permissions of its owner. 
+setUID:(rwS------/rws------) (s--> user has the 'x' exicutable permissions)(S --> user don't have exicutable permissions)
+----------------------------
+$ chmod u+s <filename> --> if user have the exicutable permissions then the uid is set as small 's' esle 'S'
+-r-sr-sr-- 1 oracle oinstall 25 Aug 12 22:47 file1
+
+$chmod 4644 <filename>
+
+The setgid (set group id) is a bit that allows the user to exec a program with the permissions of the group owner.
+
+setGID:(rwxrwS---/rwxrws---)
+----------------------------
+$ chmod g+s <filename> --> if the user have the 'x' exicutable permissions it will set as 's' else 'S'
+or 
+$ chmod 2000 <filename> --> it will set only Setgid permission
+$ chmod 2644 <filename> --> it will set setGID
+
+sticky bit:(rwx
+----------------------------
+A sticky bit is a permission bit that is set on a directory that allows only the owner of the file within that directory or the root user to delete or rename the file. No other user has the needed privileges to delete the file created by some other user.
+$chmod 1644 <filename> --> it will set the stickybit permission to a file
+(T --> the file doesn't have the exicutable permissions)
+(t --> the file have the exicutable permissions)
+
+-rw-r--r-t 1 oracle oinstall 124 Aug 13 11:24 script1.sh--> have exicutable permissions
+-rw-r--r-T 1 oracle oinstall 124 Aug 13 11:24 script1.sh--> don't have exicutable permissions
+
+$ chmod 777 file1 --> to provide read+write+exec permissions for all
+
+r=4,w=2,x=1 this is the values for read, write, exec permissions
+
+755 --> user(rwx), grop(rx),other(rx)
+
+chown:
+------
+to provide the owner ship for the file or directory, it require root access
+
+$ chown -R karna:other /opt/app/karna--> it will give the owner ship permissions to all files and directories recurcively
+
+--------------------------------------------------------------------------------------
+crontab:
+--------
+initially we don't have the crontab access, to get the corntab access we need to add the username in crontab entry inthe cron.allow available in /etc/cron.d/cron.allow to do so we rquire root permission
+
+$ vi /etc/cron.d/cron.allow
+
+we need to export the editor to edit the crontab
+
+$ EDITOR=vi
+$ exprot EDITOR
+
+$ crontab -l ---> to list the crontab entries
+
+$ crontab -e ---> to edit the crontab 
+
+crontab syntax: min 	hours 	day-of-month	month 	day-of-week	filepath
+	       (0-59)	(0-23)	(1-31)		(1-12)	(0-6)	    /tmp/f1.ksh
+		*	*	*		*	*	    /tmp/f1.ksh
+------------------------------------------------------------------------------------
+init:
+------
+$ init 0 ---> power off
+
+$ init 1 --->who ever loged in loged in and admin user can login logot
+
+$ init s ---> who ever loged in will loged out and root can login
+
+$ init 2 ----> it is multiuser level mode 
+
+$ init 3 -----> default run level multiple users can use this
+
+$ init 4 --->no reserved at to use
+
+$ init 5 --> shutdown the system
+
+$ init 6 -->  to restart the system
+------------------------------------------------------------------------------------
+link:
+-------
+$ ln -s file1 /tmp/file1 -> to create shotcut in any filesystem, if the parent file is deleted the symbolic link will also be deleted. 
+
+$ ln file1 file2 -> it will take the hard copy of the file and created with in same location, it will take the same inode value, but if the parent file is deleted also it will be avilable. 
+
+-----------------------------------------------------------------------------------
+kill:
+-----
+$ kill -1 pid ---> read the configuration
+
+$ kill -3 pid ---> thred dump
+
+$ kill -5 pid ---> debug the signal
+
+$ kill -9 pid ----> to kill the process
+------------------------------------------------------------------------------------
+tail:
+------
+tail command is used to see the updates of the file content 
+
+$ tail -f file1 ----> to see the bottom 10 lines of the file
+
+$ tail -50f file1 ---> to see the bottom 50 lines
+
+$ head  file1 --> to see the 10 header lines
+------------------------------------------------------------------------------------
+top:	$ top
+-----
+
+ like the bellow deatils we can see by using the top command
+
+CPU states: 96.4% idle,  0.2% user,  3.4% kernel,  0.0% iowait,  0.0% swap
+Memory: 1702M phys mem, 1315M free mem, 2048M total swap, 2048M free swap
+
+   PID USERNAME LWP PRI NICE  SIZE   RES STATE    TIME    CPU COMMAND
+  1610 karna      1  59    0 2420K 1324K cpu      0:00  0.33% top
+   767 noaccess  18  59    0  154M  137M sleep    1:18  0.24% java
+     8 root      12  59    0   12M 9676K sleep    0:04  0.02% svc.startd
+   596 root      18  59    0   17M 8796K sleep    0:03  0.01% fmd
+   522 root       7  59    0 3488K 1988K sleep    0:00  0.01% devfsadm
+   396 root       1  59    0 1472K  724K sleep    0:00  0.00% utmpd
+------------------------------------------------------------------------------------
+prtstat:
+---------
+it is also used to see the cpu utilization 
+
+$ prtstat
+
+ PID USERNAME  SIZE   RSS STATE  PRI NICE      TIME  CPU PROCESS/NLWP
+   783 noaccess  166M  148M sleep   59    0   0:00:31 0.3% java/18
+   697 root       31M   14M sleep   59    0   0:00:02 0.1% Xorg/1
+   812 karna    3332K 2768K cpu0    59    0   0:00:00 0.1% prstat/1
+   741 root       11M 6984K sleep   59    0   0:00:00 0.1% dtgreet/1
+   162 root     5632K 2716K sleep   59    0   0:00:00 0.0% nscd/39
+   790 karna    6516K 3732K sleep   59    0   0:00:00 0.0% sshd/1
+   785 root     9008K 2028K sleep   59    0   0:00:00 0.0% sendmail/1
+   529 root     3488K 1980K sleep   59    0   0:00:00 0.0% devfsadm/7
+   420 root     4648K 3212K sleep   59    0   0:00:01 0.0% inetd/4
+    10 root       11M 9424K sleep   59    0   0:00:12 0.0% svc.configd/17
+   567 root     3944K 1676K sleep   59    0   0:00:00 0.0% syslogd/13
+   630 root     3300K 1804K sleep   59    0   0:00:00 0.0% dmispd/1
+
+-----------------------------------------------------------------------------------
+prtdiag:
+--------
+
+$ prtdiag
+
+it will print the dignastic info, the system using that information & error msg
+
+if any type of issues occur it will showing 
+
+System Configuration: innotek GmbH VirtualBox
+BIOS Configuration: innotek GmbH VirtualBox 12/01/2006
+
+==== Processor Sockets ====================================
+
+Version                          Location Tag
+-------------------------------- --------------------------
+
+==== Memory Device Sockets ================================
+
+Type    Status Set Device Locator      Bank Locator
+------- ------ --- ------------------- --------------------
+
+==== On-Board Devices =====================================
+
+==== Upgradeable Slots ====================================
+
+ID  Status    Type             Description
+--- --------- ---------------- ----------------------------
+
+-----------------------------------------------------------------------------------
+prtconf:
+---------
+it will show the realmemory information
+
+$ prtconf | grep size   ( or ) $prtconf | grep Mem
+
+o/p:
+----
+
+Memory size: 1702 Megabytes
+-----------------------------------------------------------------------------------
+
+netstat:
+---------
+
+it wll show that the port is listen or not will show
+
+$ netstat -an | grep 22   ---> ( -a network addres, -n shows status of all)
+
+      *.22                 *.*                0      0 49152      0 LISTEN
+192.168.1.220.22     192.168.1.100.49200  16636     51 49640      0 ESTABLISHED
+      *.22                              *.*                             0      0 49152      0 LISTEN
+
+$ isainfo -kv ---> to see the kernal version
+
+o/p:
+----
+32-bit i386 kernel modules
+
+------------------------------------------------------------------------------------
+scp:
+----
+
+$ scp file4 chandu@192.168.1.220:/opt/app/karna -->copy file to remote server
+
+$ scp karna@192.168.1.220:/opt/app/karna/file1 . -> it will copy file1 to home directory
+
+------------------------------------------------------------------------------------
+
+set UID and ser GID:
+---------------------
+
+to provide the special permisions to a file 
+
+s-> special permision ON, S-> special permision OFF
+
+$ chmod 4755 file1 --> to set the uid 
+
+-rwsr-xr-x   1 karna    other         14 Dec  1 23:06 file4
+
+$ chmod 6755 file1 --> to set the Gid + uid
+
+-rwsr-sr-x   1 karna    other         14 Dec  1 23:06 file4
+
+$ chmod 2755 file1 --> to set the Gid
+
+-rwxr-sr-x   1 karna    other         14 Dec  1 23:06 file4
+
+$ chmod 4655 file1 --> it don't have the exicutable permissions for that file 
+
+-rwSr-xr-x   1 karna    other         14 Dec  1 23:06 file4
+
+$ chmod 755 file1 -> to remove the special permision
+
+-rwxr-xr-x   1 karna    other         14 Dec  1 23:06 file4
+
+-------------------------------------------------------------------------------------
+sort:
+------
+to sort a file 
+
+$ sort file1 -> asending order
+
+$ sort -r file1 ->desending order
+
+$ sort -u file1 -> to eliminate duplicates
+
+$ sort file1 | wc -l --> to 
+
+$ who | cut -c 1-10 ---> it will print first 10 charecters
+
+$ cut -d: -f 1,3 /etc/passwd
+
+$ alias cmd1="cd /opt/app/karna"
+
+$ unalias cmd1 -> to remove the alias 
+
+-------------------------------------------------------------------------------------
+find:
+-----
+$ find . -name filename ---> to find a file in pwd
+
+$ find / -name filename -> to find a file in root
+
+$ find . -type f -name filename -> to find a file type -type
+
+$ find . -type d -name directory name -> to find directory
+
+$ find . -name "*" -mtime +30 ---> to find last 30 days list
+
+$ find . -name "*.log" -mtime +30 -exec rm -rf {} \; --->to remove +30 days files
+
+$ find . -exec grep -i "String1" 
+
+$ find / -name "*.so* 2>/dev/null --> which will remove the unwanted output
+
+$ find . -type f -name "*.so" -exec cp {} $HOME/ndrx-debug/lib \; --> find all .so files and copy to a location.
+
+$ find . -executable -type  f -name "*.so" -exec cp {} $HOME/lib \; --> copy all executables from this directory.
+
+-------------------------------------------------------------------------------------
+sticky bit:
+------------
+sticky bit is used for the shared directories any user can go to the directory and copy the files and can't modify or delete. and the user who is created that file can delete it
+
+$ chmod 1755 dir1 --> it will set the sticky bit
+
+drwxr-xr-t   4 karna    other        512 Dec  2 00:37 dir2
+
+$ chmod 1750 dir1 -> it will off the sticky bit
+
+drwxr-xr-T   4 karna    other        512 Dec  2 00:37 dir2
+
+$ chmod 755 dir1 -> it will remove the sticky bit
+
+--------------------------------------------------------------------------------------
+swap:
+-----
+to add the swap space we need to create the emplty file with mkfile command and then we need to add this to swap memory. to do this we reqire root access
+
+$ swap -l  ---> to list the swap space..
+
+o/p:
+-----
+swapfile             dev  swaplo blocks   free
+/dev/dsk/c0t0d0s3   30,3       8 4194288 4194288
+
+
+$ swap -s --> to see the swap space avilable
+o/p:
+-----
+total: 192792k bytes allocated + 39284k reserved = 232076k used, 3235236k available
+
+$ mkfile 50m sfile1 ---> it will create a file with 50mb size. it is empty file
+
+$ swap -a /opt/app/karna/sfile1 ---> is a command to add the swap space to swap
+
+$ swap -l --> it will show the added swap space.
+
+o/p:
+----
+swapfile             dev  swaplo blocks   free
+/dev/dsk/c0t0d0s3   30,3       8 4194288 4194288
+/opt/app/karna/sfile1  -        8 102392 102392   ---> here it is showing the swap space
+
+to make this swap memory permanetly then /etc/vfstab file by using vi and provide the entries like
+/opt/app/karna/sfile1   -swap 
+and save the file and restart the server, then it will be permanet memory
+
+--------------------------------------------------------------------------------------
+ftp:
+-----
+to transfor the file we can do it by using scp, ftp, ssh
+
+$ ftp -i ipaddress ---> it will ask for the user who is
+
+Connected to 192.168.1.220.
+220 appserver FTP server ready.
+Name (192.168.1.220:karna): karna
+331 Password required for karna.
+Password:
+230 User karna logged in.
+Remote system type is UNIX.
+Using binary mode to transfer files.
+
+ftp> bin ---> it will transfor the file in binary format
+
+ftp> asci  --> it will transfor the file in asci format
+
+ftp> pwd ---> to see the present working directory (cd dir1 -> to navagate to directory, ls -> list content)
+
+ftp> lcd  --> to see the remote sever woking directory
+
+ftp> put file1.txt  -> to put the file in remote system
+
+ftp> get file2.txt --> to get the file form remote system
+
+ftp> bye  --> to exit form scp
+--------------------------------------------------------------------------------------
+sftp: (secure file transfor protocal)
+-------------------------------------
+$ sftp username@hostname --> to connect to the remote host
+
+sftp>  ? --> this will give the list of commands which are available in the sftp
+sftp> ?
+
+Available commands:
+
+cd path   ------------------->Change remote directory to 'path'
+lcd path  ------------------->Change local directory to 'path'
+chgrp grp path -------------->Change group of file 'path' to 'grp'
+chmod mode path ------------->Change permissions of file 'path' to 'mode'
+chown own path -------------->Change owner of file 'path' to 'own'
+help ------------------------>Display this help text
+get remote-path [local-path]->Download file
+lls [ls-options [path]] ----->Display local directory listing
+ln oldpath newpath ---------->Symlink remote file
+lmkdir path ----------------->Create local directory
+lpwd  ----------------------->Print local working directory
+ls [path] ------------------->Display remote directory listing
+lumask umask ---------------->Set local umask to 'umask'
+mkdir path ------------------>Create remote directory
+put local-path [remote-path]->Upload file
+mput <L path> <R Path> ------>upload multiplue files at a time
+pwd  ------------------------>Display remote working directory
+exit ------------------------>Quit sftp
+quit ------------------------>Quit sftp
+rename oldpath newpath ------>Rename remote file
+rmdir path ------------------>Remove remote directory
+rm path --------------------->Delete remote file
+symlink oldpath newpath ----->Symlink remote file
+version --------------------->Show SFTP version
+!command -------------------->Execute Linux 'command' in local shell
+!  -------------------------->Escape to local shell
+?  -------------------------->Synonym for help
+
+--------------------------------------------------------------------------------------
+sed:
+
+$ sed -n '5,10p' myfile.txt --> to read selected range of line from a file. 
+
+$ ps -ef |grep ssh|sed -n '2,4p' --> to filer the output by using the sed command. 
+
+$ ps -ef |grep ssh|sed -n '2p' --> to print only a perticular line in the process
+
+$ sed -n -e '5,7p' -e '10,13p' myfile.txt --> the -e option allows us to execute a given action (in this case, print lines) for each range.
+
+$ sed 's/version/story/g' myfile.txt --> replace a word "version" from "story" in file ( g --> case sensitive, gi --> case insensitive)
+
+$ ip route show | sed 's/  */ /g'  --> eliminate multiple spaces with single space.
+
+$ sed '/^#\|^$\| *#/d' httpd.conf --> To remove empty lines or those beginning with # from the Apache configuration file
+
+$ sed 's/\/[Ss]bin\/nologin/rar/g' file5 --> to replace a string, if the first letter is upper/lower can be replace by this. 
+
+$ sed -n '/^oracle/ p' file3 --> to get the lines of perticular sting starting with "oracle"
+
+$ sed -n '/^Jul 1/ p' filename.log --> to get the lines logs which are written on "Jul 1"
+
+$ sed 'G' file1 --> to add spaces between lines 
+
+$ sed -i 's/\r//' myfile.txt --> to remove the control M (^M) charecters
+
+$ sed -i'.orig' 's/this/that/gi' myfile.txt --> To do that, indicate a suffix following the -i option (inside single quotes) to be used to rename the original file.
+In the following example we will replace all instances of this or This (ignoring case) with that in myfile.txt, and we will save the original file as myfile.txt.orig.
+
+$ sed 's/^\(.*\),\(.*\)$/\2\, \1/g' names.txt  --> you have a file containing full names in the format First name, Last name. To adequately process the file, you may want to switch Last name and First name.
+
+$  sed -i 's/that/this/gi;s/line/verse/gi' myfile.txt --> Note how this can be done by using an ordinary sed substitution command followed by a semicolon and a second substitution command
+
+--------------------------------------------------------------------------------------
+awk:pattern scanning and processing language
+
+$ ls -ltr |awk '{print $1}'
+	
+	$0 --> no colums
+	$1 --> first colum 
+	$2 --> second colum
+$ awk -F: '{print $1}' /etc/passwd --> -F is field separator 
+root
+bin
+daemon
+adm
+
+$ echo "Hello Tom" | awk '{$4="Adam"; print $0}' --> using multiple commands in single line separate with ;
+Hello Tom  Adam
+
+$ awk -F: -f testfile /etc/passwd --> passing awk script file using -f option as  a source 
+
+$  awk -F: 'BEGIN {print "List OF USERS:"} {print $1" \t\t"  $6} END {print "END OF FILE"}' /etc/passwd 
+		--> to print the content with header, and the Users list. \t is to give tab space, and end is to give end of the file 
+
+example:
+--------
+$ ps -ef |grep sshd | awk 'BEGIN {print "List OF USERS:"} {print $1" \t\t"  $2} END {print "END OF FILE"}'
+List OF USERS:
+root            6527
+root            7115
+oracle          7139
+root            7378
+oracle          8070
+END OF FILE
+[oracle@11gr2 karna]$
+
+$ awk 'BEGIN{FS=":"; OFS="-"} {print $1,$6,$7}' /etc/passwd --> it will separate the ":" and replace with "-"
+root-/root-/bin/bash
+bin-/bin-/sbin/nologin
+daemon-/sbin-/sbin/nologin
+adm-/var/adm-/sbin/nologin
+
+FIELDWIDTHS-->	Specifies the field width.
+RS ---------->  Specifies the record separator.
+FS ---------->  Specifies the field separator.(FS="\n" --> a new line)(FS="\t\t" --> 2tabsapce) 
+OFS --------->  Specifies the Output separator.
+ORS --------->  Specifies the Output separator.
+
+$ echo $HOME
+/home/oracle
+$  echo |awk -v home=$HOME '{print "my home path:"home}' --> assign a variable and pass in the awk command
+my home path:/home/oracle
+
+-------------------------------------------------------------------------------------
+grep: string search:
+--------------------
+$ grep -i "running" filename1.log --> search for a string from a file
+
+$ grep -i "running" filename*.log --> search for a string in multiple files
+
+$ grep -ic "running" filename*.log --> it will list the count of the string from each file
+ex:(in the below output we can see the file 
+[oracle@11gr2 karna]$ grep -ic "oracle" file*
+file:0
+file1:0
+file2:3
+file3:9
+file4:3
+[oracle@11gr2 karna]$
+  
+$ grep -il "oracle" file* --> file which contain the string
+
+$ grep -iL "oracle" file* --> file which doesn't match the string
+
+$ grep -i --color "oracle" file* --> file which match the string and highlite with color
+
+$ grep -in --color "oracle" file* --> file which match with string and the line the the match is present in files
+
+$ grep -iRn --color "oracle" * --> this will grep the file from all the file and directories and archaves and list the string
+
+$ grep ^oralce * --> file which start with string "oracle"
+
+$ grep oracle$ * --> display all lines ending with given string patern
+
+$ grep -v "oracle" filename --> it will eliminate the lines which is having string "oracle"
+
+$ grep -iE "oracle|root" /etc/passwd --> multiple sting search 
+
+$ grep -v "/sbin/nologin" /etc/passwd
+
+       -i, --ignore-case
+              Ignore case distinctions in both the PATTERN and the input files.
+       --colour[=WHEN], --color[=WHEN]
+              Surround the matching string with the marker find in GREP_COLOR environment variable. WHEN may be ‘never’, ‘always’, or ‘auto’
+       -c, --count
+              Suppress normal output; instead print a count of matching lines for each input file.  With the -v,  --invert-match  option  (see  below),
+              count non-matching lines.
+       -L, --files-without-match
+              Suppress normal output; instead print the name of each input file from which no output would normally have been  printed.   The  scanning
+              will stop on the first match.
+       -l, --files-with-matches
+              Suppress  normal output; instead print the name of each input file from which output would normally have been printed.  The scanning will
+              stop on the first match.
+       -n, --line-number
+              Prefix each line of output with the line number within its input file.
+       -R, -r, --recursive
+              Read all files under each directory, recursively; this is equivalent to the -d recurse option.
+--------------------------------------------------------------------------------------
+cut: cut - remove sections from each line of files
+
+	-c, --characters=LIST
+              select only these characters
+
+       -d, --delimiter=DELIM (this will say the end of the field f1:f2:f3:f4:f5, f1:f5)
+              use DELIM instead of TAB for field delimiter
+
+       -f, --fields=LIST
+              select only these fields;  also print any line that contains no delimiter character, unless the -s option is specified
+
+       -n     with -b: don’t split multibyte characters
+
+
+$ cat -d : -f 1 /etc/passwd --> this will print field1 
+
+$ cut -d : -f 1,7 /etc/passwd --> this will print field1:field7 by seperating with delimiter :
+root:/bin/bash
+bin:/sbin/nologin
+daemon:/sbin/nologin
+
+$  cut -c 1-4 /etc/passwd --> it will cut the first four charecters and displays the output
+
+$ free | tr -s ' ' | sed '/^Mem/!d' | cut -d" " -f2  --> it will display totatl memeory alocated. as RAM
+3107776
+
+-------------------------------------------------------------------------------------
+free - Display amount of free and used memory in the system
+
+free [-b|-k|-m|-g] [-l] [-o] [-t] [-s delay] [-c count] [-V]
+  -b,-k,-m,-g show output in bytes, KB, MB, or GB
+  -l show detailed low and high memory statistics
+  -o use old format (no -/+buffers/cache line)
+  -t display total for RAM + swap
+  -s update every [delay] seconds
+  -c update [count] times
+  -V display version information and exit
+
+$ free
+             total       used       free     shared    buffers     cached
+Mem:       3107776     662544    2445232          0     142856     407464
+-/+ buffers/cache:     112224    2995552
+Swap:      2031608          0    2031608
+--------------------------------------------------------------------------------------
+sort:
+
+$ cut -d : -f 1 /etc/passwd |sort 
+
+$ ps -ef |grep sshd |awk '{print $2}' |sort -n
+
+$ ps -ef |grep ssh|awk '{print $1","$2}'|sort -t"," -k1,1
+oracle,7380
+oracle,7485
+oracle,8191
+root,7483
+root,8189
+root,8272
+
+[oracle@11gr2 karna]$ ps -ef |grep ssh|awk '{print $1","$2}'|sort -t"," -k2,2 -u --> sort the fields based on the filed 2
+root,6527
+root,7378
+oracle,7380
+root,8189
+oracle,8191
+root,8272
+oracle,8274
+oracle,8782
+
+[oracle@11gr2 karna]$ ps -ef |grep ssh|awk '{print $1","$2}'|sort -t"," -k1,1 -u --> sort the files based on the field 1
+oracle,7380
+root,6527
+[oracle@11gr2 karna]$
+
+	-n --> sorting the numbers
+	-r --> reverse the sorting 
+	-u --> eliminate duplicates
+
+
+--------------------------------------------------------------------------------------
+ip: (/sbin/ip)
+--------------
+
+Usage: ip [ OPTIONS ] OBJECT { COMMAND | help }
+       ip [ -force ] [-batch filename
+where  OBJECT := { link | addr | route | rule | neigh | ntable | tunnel |
+                   maddr | mroute | monitor | xfrm }
+       OPTIONS := { -V[ersion] | -s[tatistics] | -r[esolve] |
+                    -f[amily] { inet | inet6 | ipx | dnet | link } |
+                    -o[neline] | -t[imestamp] }
+
+[oracle@11gr2 karna]$ /sbin/ip addr
+1: lo: <LOOPBACK,UP,LOWER_UP> mtu 16436 qdisc noqueue
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+    inet6 ::1/128 scope host
+       valid_lft forever preferred_lft forever
+2: eth0: <BROADCAST,MULTICAST,UP,LOWER_UP> mtu 1500 qdisc pfifo_fast qlen 1000
+    link/ether 00:0c:29:9c:52:3a brd ff:ff:ff:ff:ff:ff
+    inet 192.168.233.4/24 brd 192.168.233.255 scope global eth0
+    inet6 fe80::20c:29ff:fe9c:523a/64 scope link
+       valid_lft forever preferred_lft forever
+3: sit0: <NOARP> mtu 1480 qdisc noop
+    link/sit 0.0.0.0 brd 0.0.0.0
+
+[oracle@11gr2 karna]$ /sbin/ip route
+192.168.233.0/24 dev eth0  proto kernel  scope link  src 192.168.233.4
+169.254.0.0/16 dev eth0  scope link
+[oracle@11gr2 karna]$
+
+----------------------------------------------------------------------------------------
+ps : report a snapshot of the current processes
+-----------------------------------------------
+********* simple selection *********  ********* selection by list *********
+-A all processes                      -C by command name
+-N negate selection                   -G by real group ID (supports names)
+-a all w/ tty except session leaders  -U by real user ID (supports names)
+-d all except session leaders         -g by session OR by effective group name
+-e all processes                      -p by process ID
+T  all processes on this terminal     -s processes in the sessions given
+a  all w/ tty, including other users  -t by tty
+g  OBSOLETE -- DO NOT USE             -u by effective user ID (supports names)
+r  only running processes             U  processes for specified users
+x  processes w/o controlling ttys     t  by tty
+*********** output format **********  *********** long options ***********
+-o,o user-defined  -f full            --Group --User --pid --cols --ppid
+-j,j job control   s  signal          --group --user --sid --rows --info
+-O,O preloaded -o  v  virtual memory  --cumulative --format --deselect
+-l,l long          u  user-oriented   --sort --tty --forest --version
+-F   extra full    X  registers       --heading --no-heading --context
+                    ********* misc options *********
+-V,V  show version      L  list format codes  f  ASCII art forest
+-m,m,-L,-T,H  threads   S  children in sum    -y change -l format
+-M,Z  security data     c  true command name  -c scheduling class
+-w,w  wide output       n  numeric WCHAN,UID  -H process hierarchy
+--------------------------------------------------
+
+$ ps -C syslogd -o pid=  --> Print only the process IDs of syslogd:
+
+$ ps -p 42 -o comm=  --> Print only the name of PID 42:
+
+$ ps -eo pid,tid,class,rtprio,ni,pri,psr,pcpu,stat,wchan:14,comm  --> To see every process with a user-defined format:
+$ ps axo stat,euid,ruid,tty,tpgid,sess,pgrp,ppid,pid,pcpu,comm
+$ ps -eopid,tt,user,fname,tmout,f,wchan
+
+$ ps -U root -u root u  --> To see every process running as root (real & effective ID) in user format:
+
+$ ps -eo euser,ruser,user,fuser,f,comm,label  --> To get security info:
+
+$ ps -eft  --> Select all processes associated with this terminal.
+
+$  ps -C sshd --> to search with a command name, string name
+
+ex:
+[oracle@11gr2 karna]$ ps -C sshd
+  PID TTY          TIME CMD
+ 6527 ?        00:00:00 sshd
+ 9420 ?        00:00:00 sshd
+ 9422 ?        00:00:00 sshd
+ 9461 ?        00:00:00 sshd
+ 9463 ?        00:00:00 sshd
+[oracle@11gr2 karna]$
+
+$ ps -f --forest -C sshd  ---> it will give the tree structure process with child process and parent process 
+
+[oracle@11gr2 karna]$ ps -f --forest -C sshd
+UID        PID  PPID  C STIME TTY          TIME CMD
+root      6527     1  0 09:34 ?        00:00:00 /usr/sbin/sshd
+root      9420  6527  0 16:09 ?        00:00:00  \_ sshd: oracle [priv]
+oracle    9422  9420  0 16:09 ?        00:00:00  |   \_ sshd: oracle@pts/2
+root      9461  6527  0 16:10 ?        00:00:00  \_ sshd: oracle [priv]
+oracle    9463  9461  0 16:10 ?        00:00:00      \_ sshd: oracle@pts/3
+
+$ ps -o pid,uname,comm -C apache2  --> to display on the PID,USER,COMMAND details 
+  PID USER     COMMAND
+ 2359 root     apache2
+ 4524 www-data apache2
+ 4525 www-data apache2
+ 4526 www-data apache2
+ 4527 www-data apache2
+
+$ ps -p 3150 -L --> The following command shall display all the threads owned by the process with id 3150.
+	"-L" option will display the threads along with the processes.
+
+
+--------------------------------------------------------------------------------
+watch:  execute a program periodically, showing output fullscreen
+
+ watch [-dhntv] [--differences[=cumulative]] [--help] [--interval=<n>] [--no-title] [--version] <command>
+  -d, --differences[=cumulative]        highlight changes between updates
+                (cumulative means highlighting is cumulative)
+  -h, --help                            print a summary of the options
+  -n, --interval=<seconds>              seconds to wait between updates
+  -v, --version                         print the version number
+  -t, --no-title                        turns off showing the header
+
+
+$ watch -n 1 'ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15' --> this command is to wactch the ps command into a realtime process reporter
+
+Every 1.0s: ps -e -o pid,uname,cmd,pmem,pcpu --sort=-pmem,-pcpu | head -15                                                                      Sat Aug 19 17:10:11 2017
+
+  PID USER     CMD                         %MEM %CPU
+ 9851 oracle   watch -n 1 ps -e -o pid,una  0.0  1.5
+ 7131 oracle   /u01/app/oracle/product/11.  0.9  1.0
+ 8920 oracle   /usr/bin/java -Djava.util.l  3.0  0.3
+ 5922 root     /usr/sbin/vmtoolsd           0.1  0.1
+ 6831 root     hald-addon-storage: polling  0.0  0.1
+ 7273 oracle   /u01/app/oracle/product/11.  0.5  0.0
+ 6436 root     pcscd                        0.0  0.0
+ 7098 root     /usr/libexec/gdm-rh-securit  0.1  0.0
+ 9463 oracle   sshd: oracle@pts/3           0.0  0.0
+  550 root     [kjournald]                  0.0  0.0
+ 6808 68       hald                         0.1  0.0
+ 6247 root     irqbalance                   0.0  0.0
+    1 root     init [5]                     0.0  0.0
+  259 root     [pdflush]                    0.0  0.0
+
+--------------------------------------------------------------------------------
+
+sysctl:
+---------
+sysctl - configure kernel parameters at runtime
+
+DESCRIPTION
+       sysctl  is  used  to  modify  kernel parameters at runtime.  The parameters available are those listed under /proc/sys/.  Procfs is required for
+       sysctl(8) support in Linux.  You can use sysctl(8) to both read and write sysctl data.
+
+EXAMPLES
+       /sbin/sysctl -a
+
+       /sbin/sysctl -n kernel.hostname
+
+       /sbin/sysctl -w kernel.domainname="example.com"
+
+       /sbin/sysctl -p /etc/sysctl.conf
+
+any changes do to /etc/sysctl.conf file we can refresh the file content by using the command 
+
+       -n     Use this option to disable printing of the key name when printing values.
+
+       -e     Use this option to ignore errors about unknown keys.
+
+       -N     Use this option to only print the names. It may be useful with shells that have programmable completion.
+
+       -q     Use this option to not display the values set to stdout.
+
+       -w     Use this option when you want to change a sysctl setting.
+
+       -p     Load in sysctl settings from the file specified or /etc/sysctl.conf if none given.  Specifying - as  filename  means  reading  data  from
+              standard input.
+
+       -a     Display all values currently available. Please see the NOTES.
+
+       -A     Display all values currently available in table form. Please see the NOTES.
+--------------------------------------------------------------------------------
+
+xargs:
+------
+
+$ ipcs -s |egrep mqm |awk '{print $2}' |xargs -i -n1 ipcrm -s --> this command will delete all the "semaphores" at once by using the "xargs" option.
+
+$ ipcs -m |egrep mqm |awk '{print $2}' |xargs -i -n1 ipcrm -m
+
+$ rpm -qa | grep MQSeries | xargs rpm -ev
+
+Usage:
+ ipcrm [options]
+ ipcrm <shm|msg|sem> <id> [...]
+ 
+Options:
+ -m, --shmem-id <id>        remove shared memory segment by shmid
+ -M, --shmem-key <key>      remove shared memory segment by key
+ -q, --queue-id <id>        remove message queue by id
+ -Q, --queue-key <key>      remove message queue by key
+ -s, --semaphore-id <id>    remove semaphore by id
+ -S, --semaphore-key <key>  remove semaphore by key
+ -a, --all[=<shm|msg|sem>]  remove all
+ -v, --verbose              explain what is being done
+ 
+ -h, --help     display this help and exit
+ -V, --version  output version information and exit
+
+
+
+
+
+
+
+
+
+
+

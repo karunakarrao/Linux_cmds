@@ -1,0 +1,4 @@
+neat ---> network configuration setup
+service network restart --> to restart the network services. 
+service sshd status --> sshd service status check  
+service sshd start --> sshd service start
