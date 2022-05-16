@@ -2,17 +2,21 @@
 				:::Scripting Basics:::
 ===================================================================================================================
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 echo:
-----------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 to print data on the stdout, string or numberic data
 
 exmple:
 -------------------
+#!/bin/bash
 echo "my age is 32"
-echo 22/7
-	
+echo 'my name is raj'
+echo 
+
+------------------------------------------------------------------------------------------------------------------------------------------------
 quotes:
-------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 we will be using differnt quotes in shell scripting like "", '', ``. each quote has its own perpose. so while using this we should be careful.
 "" --> will read the values of variables defined in the script and print the output of that variable
 '' --> will consider data between '' as a string so, it will not print the values of variable.
@@ -29,8 +33,9 @@ echo '$YEAR'
 echo `date`
 ----------------------------
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 Variable:
-----------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 variables defined in the shell script are case sensitive, and it will only allow "_" while define the variable.
 
 1. case sensitive 
@@ -50,13 +55,15 @@ variables defined in the shell script are case sensitive, and it will only allow
 
 	Name = "kumar" --> incorrect\
 
-Input: read
------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
+read
+------------------------------------------------------------------------------------------------------------------------------------------------
 to pass any user inputs to the script we need to use the keyword "read"
 	read -p " please enter your name " $1
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 Special Varibales:
-----------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 below are the special variables used to store the values. each variable is defined to store the specific value. 
 
 $* --> to store the arguments passed to the script ($1, $2, $3,...)
@@ -97,8 +104,9 @@ then
 	exit 1
 done
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 Arithmetic:
-------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 1. for arthemetic operation we user "expr" command. 
 2. we must use space between each variable +, -, *, /,^
 	example:
@@ -108,7 +116,7 @@ Arithmetic:
 	expr $B - $A
 	expr $A \* $B
 	expr $A / $B
-3. if we write between "((  ))" no space is required, we can write freely
+3. if we write arthemetic operators between "((  ))" we can write freely
 	example:
 	A=10
 	B=20
@@ -118,8 +126,9 @@ Arithmetic:
 	echo $((22/7)) --> o/p: 3 
 	echo 22/7 |bc -l --> o/p: 3.14285714285714285714
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 Conditional Logic:
--------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 Conditional operators:
 ----------------------------------------
 1. conditons are written in [ ] or [[ ]] 
@@ -130,7 +139,11 @@ example:
 ---------
 	[ "abc" = "abc" ] 
 	[ "abc" != "abc" ]
-numbers: operator used to check condition [ -eq, -ne, -gt, -lt]
+	
+------------------------------------------------------------------------------------------------------------------------------------------------
+Relational Operators:
+------------------------------------------------------------------------------------------------------------------------------------------------
+numbers: operator used to check condition [ -eq, -ne, -gt, -lt, -le, -ge]
 
 example:
 -----------
@@ -160,11 +173,33 @@ Numeric Comparisons
 | expr1 -le expr2  | True if expr1 is less than or equal to expr2  |
 | !expr1           | Negates the result of the expression          |            
 +------------------+-----------------------------------------------+
-	
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+Multipule conditions:
+------------------------------------------------------------------------------------------------------------------------------------------------
+if you want to check mutiple condictions we can use 
+"AND" -> -a -> "&&" operator
+"OR" ->  -o -> "||" operator
+"NOT" -> -n -> "!"
+
+cond1 && cond2 && cond3
+or
+cond1 -a cond2 -a cond3 
+or
+cond 
+
+example:
+----------------------
+if [ ]
+then
+ ....
+else
+ .....
+fi
 
 if:
 -----------------------------------------
-the conditon is met then the logic will exicute esle no
+if is a conditional statement, to check the conditon is met then the logic will exicute esle not. we must follow few things writing the if statements. below are the rules.    
 
 1. conditions are writen in [ ]
 2. must use space between conditions and braces
@@ -186,8 +221,7 @@ exmaple:1
 	if [ $rocket_status = "failed" ]
 	then
 		echo " Rocket debug is exicuting"
-
-	elfi [ $rocket_status = "failed" ]
+	elif [ $rocket_status = "failed" ]
 	then
 		echo " Rocket launch successful"
 	else 
@@ -202,6 +236,13 @@ example:2
 	else
 		echo "file not exists"
 	fi
+---------------------------------------------
+example:3
+--------------------------------------------
+ping $IP
+if [ $? -eq 0]; then
+echo "command success"
+fi
 
 for: 
 --------------------------------------------------------
@@ -271,9 +312,9 @@ do
 	echo $i
 done
 
-
+------------------------------------------------------------------------------------------------------------------------------------------------
 while:
------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 this loop will end only when the condition is satisfied else it will be an infinity loop
 
 example:
@@ -306,8 +347,9 @@ do
 done
 -----------------------------------------------------
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 case:
-----------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 we can use case statement in above script 
 
 example:1
@@ -341,8 +383,9 @@ example:1
 --------------------
 $ lsss; echo $? --> o/p: >0 | failed 
 
+------------------------------------------------------------------------------------------------------------------------------------------------
 functions:
------------------------------------------------
+------------------------------------------------------------------------------------------------------------------------------------------------
 how define a function to remove the duplication of code
 	1. function is defined as (ex: function function-name(){ << logic >> })
 	2. we can pass arguments in to function as $1 $2 and so on
@@ -380,3 +423,30 @@ function dir_check() {
 dir_check $tm_dir_list $ndrx_home
 dir_check $qdata_dir_list $ndrx_home
 -----------------------  
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+set: is a positional parameters
+------------------------------------------------------------------------------------------------------------------------------------------------
+
+#!/bin/bash
+set `date`
+echo "$1"
+echo "$2"
+echo $3
+
+------------------------------------------------------------------------------------------------------------------------------------------------
+until:
+------------------------------------------------------------------------------------------------------------------------------------------------
+until loop is used to check till the condition is true. that means it will keep checking the givn condition is true. 
+
+------------------------------
+#!/bin/bash
+echo -e " Please enter the 'IP' to check the 'Ping' status : "
+read -r IP
+until ping -c 3 $IP
+do 
+	echo "$IP is not reachable"
+	sleep 5
+done
+echo "$IP is now reachable"
+------------------------------
