@@ -34,18 +34,39 @@ Input: read
 -----------------------------------------
 to read input from enduser in to program, need to use "read" command 
 	read -p " please enter your name " $1
-	
-	$0 	is script 
-	$1 	is first argument as an input
-	$2 	is second 
-	$3 	is third 
 
-	$#    Stores the number of command-line arguments that were passed to the shell program.
-	$?    Stores the exit value of the last command that was executed.
-	$0    Stores the first word of the entered command (the name of the shell program).
-	$*    Stores all the arguments that were entered on the command line ($1 $2 ...).
-	"$@"  Stores all the arguments that were entered on the command line, individually quoted ("$1" "$2" ...).
-	
+Special Varibales:
+----------------------------
+below are the special variables used to store the values. each variable is defined to store the specific value. 
+
+$* --> to store the arguments passed to the script ($1, $2, $3,...)
+$# --> to store the argument count passed the script
+$? --> to store the exit-code/value of last command exicuted
+$$ --> to store the PID value of that script
+$! --> to store the PID value of the last background job
+$@ --> to store the arguments passed to the script ($1, $2, $3,...)
+
+$0 --> to store script name
+$1 --> to store first argument as an input
+$2 --> to store second  argument
+$3 --> to store third argument
+
+----------------------------
+Special-variable.sh
+----------------------------
+#!/bin/bash
+# this is to check how the special variables are used 
+
+echo "Value stored in special variable"'$*': $*
+echo "Value stored in special variable"'$#': $#
+echo "Value stored in special variable"'$?': $?
+echo "Value stored in special variable"'$0': $0
+echo "Value stored in special variable"'$1': $1
+echo "Value stored in special variable"'$2': $2
+echo "Value stored in special variable"'$$': $$
+echo "Value stored in special variable"'$!': $!
+echo "Value stored in special variable"'$@': $@
+---------------------------	
 eample:
 ----------------
 read -p "enter value 1 to 12" choice
