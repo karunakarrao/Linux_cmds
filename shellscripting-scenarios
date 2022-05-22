@@ -1,0 +1,66 @@
+creating .csv file 
+ 1, https://hello.com/1
+ 
+ output redirection in shell scripting.
+ =======================================================================================================
+ 
+ STDIN - 0 --> if you are typing from keyboard consider as STDIN
+ STDOUT - 1 --> 
+ STDERR - 2
+ 
+ 
+ Scenario:1
+ ------------
+ to save the script output to a file
+ 
+ hello.sh
+ ----------
+ ls -ltr
+ testing
+ free
+ testing2
+ top
+ 
+ bash hello.sh --> it will show all the output as STDOUT
+ bash hello.sh >ouput.txt --> it will redirect the success output to output.txt and display the error on screeen
+ bash hello.sh 2>output.txt  --> it will redirect the error output to output.txt and display the successouput on screeen 
+ 
+ /dev/null --> a special file in linux used to will not store the 
+ 
+ bash hello.sh > /dev/null --> redirect stdout to /dev/null
+ bash hello.sh 2> /dev/null --> redirect errors to /dev/null
+ bash hello.sh > /dev/null 2>&1
+ 
+ >> to append 
+ 
+ echo `date` |tee output.txt --> it will save output to output.txt and also display on the screen
+ 
+ User creation automation using shell script:
+ ===========================================================================================================================
+ #!/bin/bash
+ read -p "please enter username:" USER_NAME
+ echo $USER_NAME
+ -----------------------
+ #!/bin/bash
+ USERNAME=$1
+ if [ $# -gt 0 ]
+ then 
+ EXUSER=$(cat /etc/passwd |grep -w ${USERNAME} | cut -d ":" -f 1)
+ if [ "$USERNAME" = "$EXUSER" ]
+ then
+ echo "the user $USERNAME is already exist, try new user"
+ else
+ echo " user is Avaiable, create now"
+ fi
+ -------------------------------------------------------------
+ 
+ echo "aws-raj-kill-start-stop"|cut -d '-' -f 1
+ cat /etc/password |grep -w ubuntu --> to filter the given string only
+ cat /etc/password |grep -w ubuntu --> to filter the given string only
+ 
+ echo '!@#$%^' |grep fold -w1|shuf|head -1 --> it will display horizantal line
+ 
+ shift+alt selet to change the mutiple lines
+ set -x for debug the script from inside
+ bash -x for debug the script from terminal
+ 
