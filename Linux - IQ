@@ -1,0 +1,53 @@
+
+$ netstat -tulpn --> processes running with a specific port
+$ ls -l /proc/<pid>/exe
+$ netstat -tulpn | grep :80 --> to check the port used by process.
+$ lsof -u ubuntu --> to list open files for the user ubuntu 
+$ lsof -p 522 --> to list the open files for that PID
+
+$ ps -eo pid,cmd,%mem,%cpu --sort=-%mem | head -n 5 --> top 5 processes running with hight mem pid, cmd, mem & cpu in desending order
+$ ps -eo pid,cmd,%mem,%cpu --sort=-%mem | head
+
+
+Top command desnting order:
+top -b -o +%MEM | head -n 22
+
+
+How to Find Biggest Files and Directories in Linux
+du -a /home | sort -n -r | head -n 5
+du -ah /home/ubuntu/ /home/adminuser1/ | sort -n -r | head -n 5
+
+To exclude the source folders from the list:
+du -ah /home/ubuntu/ /home/adminuser1/ | sort -n -r | wc -l
+du -ah /home/ubuntu/ /home/adminuser1/ | sort -n -r | wc -l | tail -25
+
+
+Total space usd by multiple folders:
+du -sh --total /home/ubuntu /home/adminuser1
+
+
+Convert whitespaces to comma:
+sed -i  's/\s\+/,/g' data.txt
+
+#!/bin/bash
+while IFS="," read -r megastar superstar rebelstar
+do
+ echo "Displaying Record-$megastar"
+ echo "Quantity: $superstar"
+ echo "Price: $rebelstar"
+ echo "--------------------------"
+done < data
+
+
+cat data | grep -E ^[B]
+cat data | grep -E ^[B][a-eA-E]
+cat data | grep -E ^[B][a-e][c-n]
+
+cat data | egrep ^[B]
+cat data | grep '\.ca$'
+
+
+neat ---> network configuration setup
+service network restart --> to restart the network services. 
+service sshd status --> sshd service status check  
+service sshd start --> sshd service start
