@@ -3,8 +3,13 @@
 *****************************************************************
 
 $ ls /etc/*release* 	--> to check what OS you are on 
-$ cat /etc/*release* 	--> 
+$ cat /etc/*release* 	--> to see the os specifications
 $ ip addr show 		--> to check the ip of the machine
+$ type ansible		--> to locate the binary location.
+$ whereis ansible 	--> to locate the binary location
+
+$ script filename	--> to recording the output of your temrminal/putty
+
 
 RPM ( RedHat Package Manager)
 -------------------------------------------------------------------------------------
