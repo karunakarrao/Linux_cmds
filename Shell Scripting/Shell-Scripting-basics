@@ -1,7 +1,8 @@
 ===================================================================================================================
 				:::Scripting Basics:::
 ===================================================================================================================
-
+$ bash -x script-name.sh --> to debug the script
+$ set -x --> inside the script is used to debug the script
 ------------------------------------------------------------------------------------------------------------------------------------------------
 echo:
 ------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,8 +21,8 @@ quotes:
 we will be using differnt quotes in shell scripting like "", '', ``. each quote has its own perpose. so while using this we should be careful.
 "" --> will read the values of variables defined in the script and print the output of that variable
 '' --> will consider data between '' as a string so, it will not print the values of variable.
-`` --> is to exicute a command we use this `` quotes. it will consider as a single command.
-
+`` --> is to execute a command we use this `` quotes. it will consider as a single command.
+$() --> will execute the command inside the () braces. same as ``. 
 ---------------------------
 quotes.sh
 ---------------------------
@@ -42,9 +43,9 @@ variables defined in the shell script are case sensitive, and it will only allow
 2. only "_" is allowed, "-" not allowed 
 	exmple: 
 	----------
-	MISSION_NAME != mission_name
-	"mission_name" is correct
-	"mission-name" is incorrect
+	MISSION_NAME != mission_name	--> case sensitive
+	"mission_name"	-->  is correct
+	"mission-name" 	--> is incorrect
 
 3. no space while defining the variable
 	exmple:
@@ -67,16 +68,23 @@ Special Varibales:
 below are the special variables used to store the values. each variable is defined to store the specific value. 
 
 $* --> to store the arguments passed to the script ($1, $2, $3,...)
-$# --> to store the argument count passed the script, if you specify * that means it will take the file in that directory as arguments.
+$@ --> to store the arguments passed to the script ($1, $2, $3,...)
+
+$# --> to store the argument count passed the script
+Note: if you specify " * " as script argument, that means it will take the file in that directory as arguments.
+
 $? --> to store the exit-code/value of last command exicuted
 $$ --> to store the PID value of that script
 $! --> to store the PID value of the last background job
-$@ --> to store the arguments passed to the script ($1, $2, $3,...)
+
 
 $0 --> to store script name
 $1 --> to store first argument as an input
 $2 --> to store second  argument
 $3 --> to store third argument
+
+$- --> 
+
 
 ----------------------------
 Special-variable.sh
@@ -94,37 +102,41 @@ echo "Value stored in special variable"'$$': $$
 echo "Value stored in special variable"'$!': $!
 echo "Value stored in special variable"'$@': $@
 ---------------------------	
-eample:
+eample: test.sh
 ----------------
-read -p "enter value 1 to 12" choice
 if [ "$#" -eq 0 ] ; 
 then
 	echo -e "No argument."
 	echo -e "Write a number between 1 and 12."
-	exit 1
-done
+	exit 1		# Job failed and exited from script.
+fi
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 Arithmetic:
 ------------------------------------------------------------------------------------------------------------------------------------------------
 1. for arthemetic operation we user "expr" command. 
 2. we must use space between each variable +, -, *, /,^
-	example:
-	A=10
-	B=20 
-	expr $A + $B
-	expr $B - $A
-	expr $A \* $B
-	expr $A / $B
+example:
+--------------------
+A=10
+B=20 
+echo `expr $A + $B`
+echo $(expr $B - $A)
+echo $(expr $A \* $B)
+echo `expr $A / $B`
+---------------------
 3. if we write arthemetic operators between "((  ))" we can write freely
-	example:
-	A=10
-	B=20
-	echo $((A+B)) | echo $((A - B))| echo $(( A * B))
+example:
+-----------------
+A=10
+B=20
+echo $((A+B)) | echo $((A - B))| echo $(( A * B))
+-----------------------
 4. for float caliculation need to use package tool "bc"
-	exmple:
-	echo $((22/7)) --> o/p: 3 
-	echo 22/7 |bc -l --> o/p: 3.14285714285714285714
+exmple:
+--------------
+echo $((22/7)) --> o/p: 3 
+echo 22/7 |bc -l --> o/p: 3.14285714285714285714
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 Conditional Logic:
