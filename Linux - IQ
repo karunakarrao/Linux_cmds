@@ -1,3 +1,17 @@
+IQ:
+-----------------------------------------------
+Q. How to remove (^M) charectors from a file ?
+this will happen when you copy the file from windows to linux environment. this can be corrected using below.
+                $ cat test.txt
+                $ cat -v test.txt --> it will display special charectors 
+                $ dos2unix test.txt --> this will convert file to unix format
+
+Q.                 
+
+
+
+
+
 
 $ netstat -tulpn --> processes running with a specific port
 $ ls -l /proc/<pid>/exe
