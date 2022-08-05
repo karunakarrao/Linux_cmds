@@ -85,7 +85,7 @@ $1 --> to store first argument as an input
 $2 --> to store second  argument
 $3 --> to store third argument
 
-$- --> 
+$- --> command which is being executed previously.
 
 
 ----------------------------
