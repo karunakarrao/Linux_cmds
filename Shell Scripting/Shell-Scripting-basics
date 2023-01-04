@@ -56,13 +56,25 @@ variables defined in the shell script are case sensitive, and it will only allow
 	B=20 --> correct
 	Name="raj" --> correct 
 
-	Name = "kumar" --> incorrect\
+	Name = "kumar" --> incorrect
+	A = 10 --> incorrect
+	B = 20 --> incorrect
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 read
 ------------------------------------------------------------------------------------------------------------------------------------------------
 to pass any user inputs to the script we need to use the keyword "read"
 	read -p " please enter your name " $1
+
+read.sh
+-------------------------------------------
+#!/bin/bash
+
+read -p " provide name: " NAME
+read -p " provide age: " AGE
+
+echo $NAME
+echo $AGE
 
 ------------------------------------------------------------------------------------------------------------------------------------------------
 Special Varibales:
@@ -222,7 +234,7 @@ if is a conditional statement, to check the conditon is met then the logic will 
 3. if we have multiple conditions we can user [[ ]] and 
 	example:
 	if [[ $A -gt $B && $A -lt $C ]] --> and condition
-	if [[ $A -gt $B || $A -lt $C ]] --> or condition
+	if [[ $A -gt $B || $A -lt $C ]] --> or condition 
 4. linus file operatios 
 	[ -e FILE ]--> if file exists
 	[ -d FILE ]--> if file exists and is a directory
