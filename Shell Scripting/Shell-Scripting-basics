@@ -1,10 +1,11 @@
 ===================================================================================================================
 				:::Scripting Basics:::
-			https://tldp.org/LDP/abs/html/index.html
-			
+			https://tldp.org/LDP/abs/html/index.html		
 ===================================================================================================================
+
 $ bash -x script-name.sh --> to debug the script
 $ set -x --> inside the script is used to debug the script
+
 --------------------------------------------------------------------------------------------------------------------
 echo:
 --------------------------------------------------------------------------------------------------------------------
@@ -25,6 +26,7 @@ we will be using differnt quotes in shell scripting like "", '', ``. each quote 
 '' --> will consider data between '' as a string so, it will not print the values of variable.
 `` --> is to execute a command we use this `` quotes. it will consider as a single command.
 $() --> will execute the command inside the () braces. same as ``. 
+
 ---------------------------
 quotes.sh
 ---------------------------
@@ -106,7 +108,6 @@ $2 --> to store second  argument
 $3 --> to store third argument
 
 $- --> command which is being executed previously.
-
 
 ----------------------------
 Special-variable.sh
