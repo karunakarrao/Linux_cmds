@@ -9,14 +9,81 @@ $ set -x --> inside the script is used to debug the script
 --------------------------------------------------------------------------------------------------------------------
 echo:
 --------------------------------------------------------------------------------------------------------------------
-to print data on the stdout, string or numberic data
+to print data on the stdout, string or numberic data. 
+--> A backslash "\" is used to escape special character meaning.
+--> Encapsulating the variable name with ${} is used to avoid ambiguity
+--> we can print the date using the date command and $(/bin/date +%Y-%m-%d)
 
 exmple:
 -------------------
 #!/bin/bash
 echo "my age is 32"
 echo 'my name is raj'
-echo 
+echo "The price of an Apple today is: \$HK $PRICE_PER_APPLE"
+echo "filename_$(/bin/date +%Y-%m-%d)" 
+
+-------------------------------------------------------------------------------------------------------------------
+Date:
+-------------------------------------------------------------------------------------------------------------------
+date command is used in many places, there are some useful commands. for more use `man date`.
+
+syntax: $ date -d "<$anystring>" +%y/%Y/%b/%B/%a/%A
+
+$ date -d "$year" +%Y
+2023
+
+$ date -d "$day" +%B
+January
+
+$ date -d "$date1" +%A
+Sunday
+
+-------------------------------------------------------------------------------------------------------------------
+String:
+-------------------------------------------------------------------------------------------------------------------
+string operations like count, and other activities are 
+
+To count the length of the string:
+-----------------------------------
+#!/bin/bash
+STRING="this is a string"
+echo ${#STRING} 	
+
+To prune string with position and length 
+----------------------------------------
+#!/bin/bash
+STRING="this is a string"
+POS=1
+LEN=3
+echo ${STRING:$POS:$LEN}	# ${STRING:1:4}
+
+String replacement 
+-------------------
+#!/bin/bash
+STRING="to be or not to be"
+echo ${STRING[@]/be/eat} 	# Replace first occurrence
+echo ${STRING[@]//be/eat}  	# Replace all occurrences of substring
+echo ${STRING[@]// not/}	# Delete all occurrences of substring
+
+--------------------------------------------------------------------------------------------------------------------
+array: 
+--------------------------------------------------------------------------------------------------------------------
+an array is a single dimention data. this array will run only bash/korn shell so, while writing the code be aware of it. 
+
+${fruits[1]} --> array eliment position
+${fruits[@]} --> all eliments in an array
+${#fruits[@]} --> count of eliments in an array
+
+-----------------------------
+#!/bin/bash
+fruits=(mango orange apple "sapota" santra 20 500)
+for fruit in ${fruits[@]}
+do 
+	echo "fruit name is $fruit"
+done
+echo "fruits count in array is"${#fruits[@]}	# it counts the number of eliments in an array: ${#fruits[@]} of array 
+echo "All fruits:" ${fruits[@]}			# it will print eliments in the array: ${fruits[@]}
+--------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 quotes:
@@ -233,6 +300,12 @@ then
 else
  .....
 fi
+example:
+-------------------
+if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] ; then
+    command...
+fi
+
 --------------------------------------------------------------------------------------------------------------------
 if:
 --------------------------------------------------------------------------------------------------------------------
@@ -361,6 +434,16 @@ while [ condition ]
 do 
 	<< logic ..>>
 done
+
+example:
+-------------------
+#!/bin/bash
+COUNT=4
+while [ $COUNT -gt 0 ]; do
+  echo "Value of count is: $COUNT"
+  COUNT=$(($COUNT - 1))
+done
+
 --------------------------------------------------
 while true
 do
@@ -488,22 +571,6 @@ do
 done
 echo "$IP is now reachable"
 ------------------------------
-
---------------------------------------------------------------------------------------------------------------------
-array: 
---------------------------------------------------------------------------------------------------------------------
-an array is a single dimention data. this array will run only bash/korn shell so, while writing the code be aware of it. 
-
------------------------------
-#!/bin/bash
-fruits=(mango orange apple sapota santra)
-for fruit in ${fruits[@]}
-do 
-	echo "fruit name is $fruit"
-done
-echo "fruits count in array is"${#fruits[@]}
-echo "All fruits:" ${fruits[@]}
---------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 getopts
