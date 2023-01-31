@@ -28,6 +28,7 @@ echo "my age is 32"
 echo 'my name is raj'
 echo "The price of an Apple today is: \$HK $PRICE_PER_APPLE"
 echo "filename_$(/bin/date +%Y-%m-%d)" 
+echo ${#VAR1} 
 
 -------------------------------------------------------------------------------------------------------------------
 Date:
@@ -36,14 +37,14 @@ date command is used in many places, there are some useful commands. for more us
 
 syntax: $ date -d "<$anystring>" +%y/%Y/%b/%B/%a/%A
 
-$ date -d "$year" +%Y
-2023
-
-$ date -d "$day" +%B
-January
-
-$ date -d "$date1" +%A
-Sunday
+$ date -d "$year" +%Y		# o/p : 2023
+$ date -d "$day" +%B		# o/p : January
+$ date -d "$date1" +%A		# o/p : Sunday
+$ date "+%D"          		# Output: 10/11/17
+$ date "+%D %T"         	# Output:  10/11/17 16:13:27
+$ date "+%Y-%m-%d"      	# Output:  2017-10-11
+$ date "+%Y/%m/%d"      	# Output:  2017/10/11
+$ date "+%A %B %d %T %y"	# Output: Thursday October 07:54:29 12 17
 
 -------------------------------------------------------------------------------------------------------------------
 String:
@@ -54,7 +55,9 @@ To count the length of the string:
 -----------------------------------
 #!/bin/bash
 STRING="this is a string"
-echo ${#STRING} 	
+echo ${#STRING} 
+
+Output:
 
 To prune string with position and length 
 ----------------------------------------
@@ -71,6 +74,18 @@ STRING="to be or not to be"
 echo ${STRING[@]/be/eat} 	# Replace first occurrence
 echo ${STRING[@]//be/eat}  	# Replace all occurrences of substring
 echo ${STRING[@]// not/}	# Delete all occurrences of substring
+
+--------------------------------------------------------------------------------------------------------------------
+cut: command operations in shell script
+--------------------------------------------------------------------------------------------------------------------
+$ cut -b 1-4 /etc/passwd		# -b byte
+$ cut -c -4 /etc/passwd			# -c colum
+$ cut -d : -f 1 /etc/passwd 		# -d delimitor, -f fields 
+$ cut -d " " -f 1 state.txt		# " " space as delimitor
+$ cut --complement -d : -f 1 /etc/passwd	# it will remove 1st delimitor field and print rest.
+$ cut -d " " -f 1,2 state.txt --output-delimiter='%'	# replace " " with % 
+$ cat /etc/passwd |cut -d : -f 1 | sort 	# sorted 
+$ cat /etc/passwd |cut -d : -f 1 | sort  -r 	# reverse order in sorting
 
 --------------------------------------------------------------------------------------------------------------------
 array: 
