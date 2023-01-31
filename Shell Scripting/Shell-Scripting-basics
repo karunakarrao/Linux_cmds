@@ -78,6 +78,8 @@ echo ${STRING[@]// not/}	# Delete all occurrences of substring
 --------------------------------------------------------------------------------------------------------------------
 cut: command operations in shell script
 --------------------------------------------------------------------------------------------------------------------
+for cutting the string to get the desired output.
+
 $ cut -b 1-4 /etc/passwd		# -b byte
 $ cut -c -4 /etc/passwd			# -c colum
 $ cut -d : -f 1 /etc/passwd 		# -d delimitor, -f fields 
@@ -86,6 +88,15 @@ $ cut --complement -d : -f 1 /etc/passwd	# it will remove 1st delimitor field an
 $ cut -d " " -f 1,2 state.txt --output-delimiter='%'	# replace " " with % 
 $ cat /etc/passwd |cut -d : -f 1 | sort 	# sorted 
 $ cat /etc/passwd |cut -d : -f 1 | sort  -r 	# reverse order in sorting
+
+--------------------------------------------------------------------------------------------------------------------
+sed: command operations in shell script
+--------------------------------------------------------------------------------------------------------------------
+
+--------------------------------------------------------------------------------------------------------------------
+awk: command operations in shell script
+--------------------------------------------------------------------------------------------------------------------
+
 
 --------------------------------------------------------------------------------------------------------------------
 array: 
