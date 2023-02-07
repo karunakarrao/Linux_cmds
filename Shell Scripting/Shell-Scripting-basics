@@ -90,8 +90,31 @@ $ cat /etc/passwd |cut -d : -f 1 | sort 	# sorted
 $ cat /etc/passwd |cut -d : -f 1 | sort  -r 	# reverse order in sorting
 
 --------------------------------------------------------------------------------------------------------------------
-sed: command operations in shell script
+sed: command operations in shell script:
+-e : $ sed -e 's/class/room/g;s/name/age/g' test	--> -e for mutipule sed commands 
+-i : $ sed -i 's/Centos/Linux/g' test			--> -i updating the same file
+-i.back	: $ sed -i.backup 's/Centos/Linux/g' test	--> to backup existing file and do changes in original file
+-f : 
 --------------------------------------------------------------------------------------------------------------------
+$ echo "my class is a good class, in my class every" |sed 's/class/room/' --> replaces first argument in a line
+$ sed 's/class/room/2' class.txt --> replaces first 2 occurences in a line
+$ sed 's/class/room/3' class.txt --> replaces first 3 occurences in a line
+$ sed 's/class/room/g' class.txt --> replaces all strings
+$ sed '3s/class/room/' class.txt --> replaces string in a specific line
+$ sed '1,3s/class/room/' class.txt	--> replaces from line 1 to 3 only
+
+$ sed '1d' class.txt 	--> delete the 1st line
+$ sed '2d;4d;6d' class.txt	--> delete lines 2,4 and 6
+$ sed '/apple/d' fruits.txt	--> delete lines with string apple
+$ sed '/apple/!d' fruits.txt 	--> delete lines except string apple | invert delete
+$ sed '/^$/d' fruits.txt 	--> delete empty lines in a file
+
+$ sed -i 's/apple/banana/g' fruits.txt 
+
+$ sed -e 's/class/room/g;s/name/age/g' class.txt
+$ 
+
+
 
 --------------------------------------------------------------------------------------------------------------------
 awk: command operations in shell script
