@@ -5,14 +5,24 @@
 
 $ bash -x script-name.sh --> to debug the script
 set -x --> inside the script is used to debug the script
+
 break, continue --> only meaningful in a `for', `while', or `until' loop
+
 $* --> arguments are comes in a line
 $@ --> arguments comes in newline each time
+
+String: string operator used for checking  =, ==, != 
+numbers: operator used to check condition [ -eq, -ne, -gt, -lt, -le, -ge]
 
 tee --> Imagine you want to store logs of an application into a file and at the same time print it on the console.
 echo "Hello, world!" | tee /tmp/hello.txt
 echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
 
+[ -e FILE ]--> if file exists
+[ -d FILE ]--> if file exists and is a directory
+[ -s FILE ]--> If file exists and has size greater than 0
+[ -x FILE ]--> If the file is executable
+[ -w FILE ]--> If the file is writeable
 --------------------------------------------------------------------------------------------------------------------
 echo:
 --------------------------------------------------------------------------------------------------------------------
@@ -307,6 +317,7 @@ Conditional operators:
 ----------------------------------------
 1. conditons are written in [ ] or [[ ]] 
 2. list of operators 
+
 String: string operator used for checking [ =, != ]
 
 example:
