@@ -121,11 +121,11 @@ awk: command operations in shell script
 NR: NR command keeps a current count of the number of input records.
 NF: NF command keeps a count of the number of fields within the current input record. 
 $NF: prints value on that position 
-
 --------------------------------------------------------------------------------------------------------------------
-$ awk '{print}' test.txt  --> it will work like cat command
-$ awk '{print $1}' test.txt --> prints 1st coloum
-$ awk '{print $2}' test.txt --> prints 2nd coloum
+
+$ awk '{print}' test.txt  	--> it will work like cat command
+$ awk '{print $1}' test.txt 	--> prints 1st coloum
+$ awk '{print $2}' test.txt 	--> prints 2nd coloum
 
 $ awk '!/Linux/ {print}' test.txt	--> prints lines doesn't contain word "Linux" 
 $ awk '/Linux/ {print}' test.txt	--> lines contain word "Linux"
@@ -133,7 +133,7 @@ $ awk '/Linux/ {print}' test.txt	--> lines contain word "Linux"
 $ awk '{print NR, $0}' test.txt   --> prints lines with numbers
 $ awk '{print $1, $NF}' test.txt  --> prints 1st coloum and $NF value which is last coloum
 $ awk 'NR==3, NR==6 {print NR,$0}' employee.txt --> print lines from 3 to 6
-$ awk '{print NR "- " $1 }' geeksforgeeks.txt 	--> 
+$ awk '{print NR "- " $1 }' geeksforgeeks.txt 	
 
 --------------------------------------------------------------------------------------------------------------------
 array: 
