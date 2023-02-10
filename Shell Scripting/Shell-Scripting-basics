@@ -109,17 +109,23 @@ $ sed '/apple/d' fruits.txt	--> delete lines with string apple
 $ sed '/apple/!d' fruits.txt 	--> delete lines except string apple | invert delete
 $ sed '/^$/d' fruits.txt 	--> delete empty lines in a file
 
-$ sed -i 's/apple/banana/g' fruits.txt 
+$ sed -i 's/apple/banana/g' fruits.txt 	--> update the changes in the original file
+$ sed -i.backup 's/apple/bananna/g' fruits.txt --> update the original file with backup
 
-$ sed -e 's/class/room/g;s/name/age/g' class.txt
-$ 
-
-
+$ sed -e 's/class/room/g;s/name/age/g' class.txt  --> execute mutiple sed commands.
+$ sed -i.bakup_`date +%Y-%m-%d` -e 's/Centos/Linux/g;s/sandbox/mybox/g' test	--> mutiple sed commands with backup file
 
 --------------------------------------------------------------------------------------------------------------------
 awk: command operations in shell script
 --------------------------------------------------------------------------------------------------------------------
+$ awk '{print}' test.txt  --> it will work like cat command
+$ awk '{print $1}' test.txt --> prints 1st coloum
+$ awk '{print $2}' test.txt --> prints 2nd coloum
 
+$ awk '{print NR, $0}' test.txt   --> prints lines with numbers
+
+$ awk '!/Linux/ {print}' test.txt	--> prints lines doesn't contain word "Linux" 
+$ awk '/Linux/ {print}' test.txt	--> lines contain word "Linux"
 
 --------------------------------------------------------------------------------------------------------------------
 array: 
