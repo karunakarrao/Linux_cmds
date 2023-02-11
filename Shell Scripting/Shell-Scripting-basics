@@ -6,7 +6,7 @@
 $ bash -x script-name.sh --> to debug the script
 set -x --> inside the script is used to debug the script
 
-break, continue --> only meaningful in a `for', `while', or `until' loop
+break, continue, do, done --> only meaningful in a `for', `while', or `until' loop
 
 $* --> arguments are comes in a line
 $@ --> arguments comes in newline each time
