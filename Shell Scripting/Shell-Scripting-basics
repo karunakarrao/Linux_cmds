@@ -407,6 +407,7 @@ if is a conditional statement, to check the conditon is met then the logic will 
 	[ -x FILE ]--> If the file is executable
 	[ -w FILE ]--> If the file is writeable
 
+------------------------------------------
 exmaple:1
 ------------------------------------------
 	if [ $rocket_status = "failed" ]
@@ -418,7 +419,7 @@ exmaple:1
 	else 
 		echo "the status is not failed or success"
 	fi
----------------------------------------------
+--------------------------------------------
 example:2
 --------------------------------------------
 	if [ -e filename ]
@@ -427,7 +428,7 @@ example:2
 	else
 		echo "file not exists"
 	fi
----------------------------------------------
+--------------------------------------------
 example:3
 --------------------------------------------
 ping $IP
