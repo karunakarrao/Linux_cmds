@@ -18,6 +18,7 @@ tee --> Imagine you want to store logs of an application into a file and at the 
 echo "Hello, world!" | tee /tmp/hello.txt
 echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
 
+[ -f FILE ]--> check file exists or not
 [ -e FILE ]--> if file exists
 [ -d FILE ]--> if file exists and is a directory
 [ -s FILE ]--> If file exists and has size greater than 0
@@ -150,9 +151,14 @@ array:
 --------------------------------------------------------------------------------------------------------------------
 an array is a single dimention data. this array will run only bash/korn shell so, while writing the code be aware of it. 
 
-${fruits[1]} --> array eliment position
-${fruits[@]} --> all eliments in an array
-${#fruits[@]} --> count of eliments in an array
+fruits=(mango banana orange grapes apple) --> correct
+fruits=("mango" "banana" "orange" "grapes" 1000) -->correct
+
+fruits=(mango, banana, orange, apple) --> incorrect ( , aslo takes as charecter)
+
+${fruits[1]} --> array eliment position starts from (0 1 2 3) so...
+${fruits[@]} --> "@" "*" all eliments in an array
+${#fruits[@]} --> "#" will count of eliments in an array
 
 -----------------------------
 #!/bin/bash
@@ -239,15 +245,43 @@ Special Varibales:
 below are the special variables used to store the values. each variable is defined to store the specific value. 
 
 $* --> to store the arguments passed to the script ($1, $2, $3,...)
+--------------------
+#!/bin/bash
+
+echo "Using \$*:"
+for arg in "$*"; do
+    echo "$arg"
+done
+---------------------
+
 $@ --> to store the arguments passed to the script ($1, $2, $3,...)
+----------------------
+#!/bin/bash
+
+echo "Using \$*:"
+for arg in "$@"; do
+    echo "$arg"
+done
+----------------------
 
 $# --> to store the argument count passed the script
 Note: if you specify " * " as script argument, that means it will take the file in that directory as arguments.
 
 $? --> to store the exit-code/value of last command exicuted
-$$ --> to store the PID value of that script
-$! --> to store the PID value of the last background job
+--------------------------
+0: Success --> This code indicates that the previous command executed successfully without any errors.
+1: General error --> It is a generic error code that indicates something went wrong during the execution of the previous command.
+126: Command not executable. --> This code suggests that the command was not found or is not executable.
+--------------------------
 
+$$ --> to store the PID value of that script
+
+$! --> to store the PID value of the last background job 
+----------
+sleep 10 &	--> we use "&" to run in background.
+background_pid=$!
+echo "$background_pid"
+-----------
 
 $0 --> to store script name
 $1 --> to store first argument as an input
@@ -272,6 +306,9 @@ echo "Value stored in special variable"'$$': $$
 echo "Value stored in special variable"'$!': $!
 echo "Value stored in special variable"'$@': $@
 ---------------------------	
+echo -e "Line1\nLine2" --> if you add space in between them you are adding a space charecter. 
+echo -n "Hello-World" --> writes in same line
+
 eample: test.sh
 ----------------
 if [ "$#" -eq 0 ] ; 
@@ -501,14 +538,14 @@ done
 list=(1 2 3 4 5)
 
 for i in ${list[@]}
-do
+do 
 	echo $i
 done
 
 --------------------------------------------------------------------------------------------------------------------
 while:
 --------------------------------------------------------------------------------------------------------------------
-this loop will end only when the condition is satisfied else it will be an infinity loop
+this loop will end only when the condition is satisfied else it will be an infinity loop. The while true construct is commonly used in shell scripting to create an infinite loop that continues executing until explicitly terminated. 
 
 example:
 ------------------
@@ -555,7 +592,7 @@ done
 --------------------------------------------------------------------------------------------------------------------
 case:
 --------------------------------------------------------------------------------------------------------------------
-we can use case statement in above script 
+we can use case statement in above script. The case statement in shell scripting is useful when you want to perform different actions based on the value of a variable. It provides a way to evaluate multiple patterns and execute corresponding code blocks.
 
 example:1
 -----------------------------------------------
@@ -632,7 +669,18 @@ function <function-name>(){
 ...
 ...
 }
+---------------------------
+#!/bin/bash
 
+# Function definition
+greet() {
+    echo "Hello, $1!"
+    echo "How are you doing?"
+}
+
+# Function invocation
+greet "$1"
+---------------------------
 example:1 
 -------------------------
 function dir_check() {
@@ -672,6 +720,7 @@ echo $3
 until:
 --------------------------------------------------------------------------------------------------------------------
 until loop is used to check till the condition is true. that means it will keep checking the givn condition is true. 
+The until statement in shell scripting is used to create a loop that continues executing a block of code until a specific condition becomes true. It is the opposite of the while loop, which executes the code block as long as the condition is true.
 
 ------------------------------
 #!/bin/bash
@@ -684,7 +733,16 @@ do
 done
 echo "$IP is now reachable"
 ------------------------------
+#!/bin/bash
 
+counter=1
+
+until [ $counter -gt 5 ]
+do
+    echo "Counter value: $counter"
+    counter=$((counter + 1))
+done
+---------------------------------
 --------------------------------------------------------------------------------------------------------------------
 getopts
 --------------------------------------------------------------------------------------------------------------------
