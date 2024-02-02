@@ -3,27 +3,66 @@
 			https://tldp.org/LDP/abs/html/index.html		
 ===================================================================================================================
 
-$ bash -x script-name.sh --> to debug the script
-set -x --> inside the script is used to debug the script
+$ bash -x script-name.sh 	--> to debug the script
+set -x 				--> inside the script is used to debug the script
+-----------
+#/bin/bash
+set -x 		--> enable Debug inside script
+-----------
 
-break, continue, do, done --> only meaningful in a `for', `while', or `until' loop
+break, continue, do, done 	--> only meaningful in a `for` `while` and `until` loops
 
-$* --> arguments are comes in a line
-$@ --> arguments comes in newline each time
+$* 		--> arguments are comes in a line
+$@ 		--> arguments comes in newline each time
 
-String: string operator used for checking  =, ==, != 
-numbers: operator used to check condition [ -eq, -ne, -gt, -lt, -le, -ge]
+String	 	--> string operator used   `=`, `==`, `!=`
+numbers: 	--> operator used to check condition `[ -eq, -ne, -gt, -lt, -le, -ge]`
 
-tee --> Imagine you want to store logs of an application into a file and at the same time print it on the console.
-echo "Hello, world!" | tee /tmp/hello.txt
-echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
+tee 		--> Imagine you want to store logs of an application into a file and at the same time print it on the console.
+	
+ 	$ echo "Hello, world!" | tee /tmp/hello.txt
+	$ echo "Hello, world!" | tee >(tr '[:upper:]' '[:lower:]' > /tmp/hello.txt)
 
-[ -f FILE ]--> check file exists or not
-[ -e FILE ]--> if file exists
-[ -d FILE ]--> if file exists and is a directory
-[ -s FILE ]--> If file exists and has size greater than 0
-[ -x FILE ]--> If the file is executable
-[ -w FILE ]--> If the file is writeable
+	[ -f FILE ]	--> check file exists or not
+	[ -e FILE ]	--> if file exists
+	[ -d FILE ]	--> if file exists and is a directory
+	[ -s FILE ]	--> If file exists and has size greater than 0
+	[ -x FILE ]	--> If the file is executable
+	[ -w FILE ]	--> If the file is writeable
+
+------------------------------------------------------------------------------------------------------------------
+Q. How to change the color of terminal promt and disply the path were you are now ?
+------------------------------------------------------------------------------------------------------------------
+A. goto `.bashrc` and enter \u is 'user' \h is 'hostname' \w is working directory \$ is symbol. 
+
+	PS1="\u@\h:\$(pwd)\$ "
+	PS1="\[\e[32m\]\u@\h:\w \[\e[36m\]\$(pwd)\[\e[0m\]\$ "
+	PS1="\[\e[37m\]\u@\[\e[31m\]\h: \[\e[32m\]\$(pwd)\[\e[0m\]\$ "
+	
+	Black: 	\[\e[30m\]
+	Red: 	\[\e[31m\]
+	Green: 	\[\e[32m\]
+	Yellow: \[\e[33m\]
+	Blue: 	\[\e[34m\]
+	Magenta: \[\e[35m\]
+	Cyan: 	\[\e[36m\]
+	White: 	\[\e[37m\]
+------------------------------------------------------------------------------------------------------------------
+env:
+------------------------------------------------------------------------------------------------------------------
+to export environment variables for specific to directory, install "direnv" extention. this will allow you to export variables for that specific directory. 
+https://shivamarora.medium.com/a-guide-to-manage-your-environment-variables-in-a-better-way-using-direnv-2c1cd475c8e
+
+
+ 	$ sudo apt-get install direnv	--> install packages
+ 	$ eval "$(direnv hook bash)"	--> add this in you ~/.bashrc
+  create your project directory `project1`, inside create `.envrc` file and update the file with your directory specific variables.
+  	
+  	$ touch .envrc			--> directory specific variables 
+   	$ source .bashrc		--> source the .bashrc file 
+	$ cd project1			--> switch to project
+ 	$ direnv allow			--> first time Linux will reject the changes. but you can allow by running this command. 
+ 
 --------------------------------------------------------------------------------------------------------------------
 echo:
 --------------------------------------------------------------------------------------------------------------------
