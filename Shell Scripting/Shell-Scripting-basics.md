@@ -47,6 +47,7 @@ A. goto `.bashrc` and enter \u is 'user' \h is 'hostname' \w is working director
 	Magenta: \[\e[35m\]
 	Cyan: 	\[\e[36m\]
 	White: 	\[\e[37m\]
+ 
 ------------------------------------------------------------------------------------------------------------------
 env:
 ------------------------------------------------------------------------------------------------------------------
@@ -391,10 +392,10 @@ Conditional Logic:
 --------------------------------------------------------------------------------------------------------------------
 Conditional operators:
 ----------------------------------------
-1. conditons are written in [ ] or [[ ]] 
+1. conditons are written in `[ ] or [[ ]]`
 2. list of operators 
 
-String: string operator used for checking [ =, != ]
+String: string operator used for checking `[ =, != ]`
 
 example:
 ---------
@@ -404,14 +405,14 @@ example:
 --------------------------------------------------------------------------------------------------------------------
 Relational Operators:
 --------------------------------------------------------------------------------------------------------------------
-numbers: operator used to check condition [ -eq, -ne, -gt, -lt, -le, -ge]
+numbers: operator used to check condition `[ -eq, -ne, -gt, -lt, -le, -ge]`
 
 example:
 -----------
-[ 5 -eq 5 ]
-[ 5 -ne 5 ]
-[ 6 -gt 5 ]
-[ 5 -lt 6 ]
+	[ 5 -eq 5 ]
+	[ 5 -ne 5 ]
+	[ 6 -gt 5 ]
+	[ 5 -lt 6 ]
 
 String Comparisons
 +------------------+-----------------------------------------------+
@@ -471,17 +472,18 @@ if is a conditional statement, to check the conditon is met then the logic will 
 1. conditions are writen in [ ]
 2. must use space between conditions and braces
 	example:
-	if [ $A -gt $B ]
-3. if we have multiple conditions we can user [[ ]] and 
+	`if [ $A -gt $B ]`
+3. if we have multiple conditions we can user `[[ ]]` and 
 	example:
-	if [[ $A -gt $B && $A -lt $C ]] --> and condition
-	if [[ $A -gt $B || $A -lt $C ]] --> or condition 
-4. linus file operatios 
-	[ -e FILE ]--> if file exists
-	[ -d FILE ]--> if file exists and is a directory
-	[ -s FILE ]--> If file exists and has size greater than 0
-	[ -x FILE ]--> If the file is executable
-	[ -w FILE ]--> If the file is writeable
+	`if [[ $A -gt $B && $A -lt $C ]] `--> and condition
+	`if [[ $A -gt $B || $A -lt $C ]] `--> or condition 
+4. linus file operatios
+   
+	`[ -e FILE ]`--> if file exists
+	`[ -d FILE ]`--> if file exists and is a directory
+	`[ -s FILE ]`--> If file exists and has size greater than 0
+	`[ -x FILE ]`--> If the file is executable
+	`[ -w FILE ]`--> If the file is writeable
 
 ------------------------------------------
 exmaple:1
@@ -507,11 +509,12 @@ example:2
 --------------------------------------------
 example:3
 --------------------------------------------
+```
 ping $IP
 if [ $? -eq 0]; then
 echo "command success"
 fi
-
+```
 --------------------------------------------------------------------------------------------------------------------
 for: 
 --------------------------------------------------------------------------------------------------------------------
@@ -519,34 +522,42 @@ for is used to check from the range
 	
 example:1
 ----------------------------------------
+```
 for mission in $(cat mission-names.txt)
 do 
 	echo " Mission name: $mission"
 done
+```
 ---------------------------------------
 
 example:2
 --------------------------------------
+```
 for mission in 1 2 3 4 5 6
 do
 	echo " mission-$mission"
 done
+```
 ---------------------------------------
 
 example:3
 -------------------------------------
+```
 for mission in {0..100}
 do	
 	echo "$mission"
 done
+```
 -------------------------------------
 
 example:4 we can write like below also
 -----------------------------------------
+```
 for (( mission = 0 ; mission <= 100; mission++ ))
 do
 	echo "$mission"
 done
+```
 ----------------------------------------
 
 example:5 : real time
