@@ -149,7 +149,7 @@ $ tar -rvf filename.tar xyz.txt --> to append the files to tar file
 $ tar -xvf test1.tar -C test1/ --> to extrace the tar file content in different directory path
  
        -k, --keep-old-files
-              keep existing files; don’t overwrite them from archive
+              keep existing files; donâ€™t overwrite them from archive
        -d, --diff, --compare
               find differences between archive and file system
        -r, --append
@@ -162,7 +162,7 @@ $ tar -xvf test1.tar -C test1/ --> to extrace the tar file content in different 
        -p, --preserve-permissions
               extract all protection information
        --atime-preserve
-              don’t change access times on dumped files
+              donâ€™t change access times on dumped files
        --keep-newer-files
               do not overwrite files which are newer than the archive
        -K, --starting-file F
@@ -517,6 +517,25 @@ $ find . -type f -name "*.so" -exec cp {} $HOME/ndrx-debug/lib \; --> find all .
 
 $ find . -executable -type  f -name "*.so" -exec cp {} $HOME/lib \; --> copy all executables from this directory.
 
+$ find . -size +30M -size -40M
+
+$ find / -name *.zip -size 40M ----> exact 40M size
+
+$ find / -name *.zip -size +40M ----> above 40M size
+
+$ find / -name *.zip -size -40M ----> below 40M size
+
+$ find / -type f -size +100M -a -size -200M -exec du -sh {} \;
+
+$ find / -type f -name "*.log" -exec grep '404' {} \;
+
+https://medium.com/@nirbhaysingh281/use-of-mtime-in-linux-ef59cb175546
+#Delete files greater than size 30MB
+find . -type f -mtime +30 -delete
+find . -mtime +30 | xargs rm
+find /home/amit/log/ -mtime +30 -exec rm {} \;
+
+
 -------------------------------------------------------------------------------------
 sticky bit:
 ------------
@@ -758,7 +777,7 @@ $ grep -v "/sbin/nologin" /etc/passwd
        -i, --ignore-case
               Ignore case distinctions in both the PATTERN and the input files.
        --colour[=WHEN], --color[=WHEN]
-              Surround the matching string with the marker find in GREP_COLOR environment variable. WHEN may be ‘never’, ‘always’, or ‘auto’
+              Surround the matching string with the marker find in GREP_COLOR environment variable. WHEN may be â€˜neverâ€™, â€˜alwaysâ€™, or â€˜autoâ€™
        -c, --count
               Suppress normal output; instead print a count of matching lines for each input file.  With the -v,  --invert-match  option  (see  below),
               count non-matching lines.
@@ -784,7 +803,7 @@ cut: cut - remove sections from each line of files
        -f, --fields=LIST
               select only these fields;  also print any line that contains no delimiter character, unless the -s option is specified
 
-       -n     with -b: don’t split multibyte characters
+       -n     with -b: donâ€™t split multibyte characters
 
 
 $ cat -d : -f 1 /etc/passwd --> this will print field1 
