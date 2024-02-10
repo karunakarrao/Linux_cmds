@@ -1,4 +1,4 @@
-===================================================================================================================
+ ===================================================================================================================
 				:::Scripting Basics:::
 			https://tldp.org/LDP/abs/html/index.html		
 ===================================================================================================================
@@ -202,18 +202,18 @@ awk: command operations in shell script
 --------------------------------------------------------------------------------------------------------------------
 array: 
 --------------------------------------------------------------------------------------------------------------------
-an array is a single dimention data. this array will run only bash/korn shell so, while writing the code be aware of it. 
+an array is a single dimention data. this array will run only `bash/korn` shell so, while writing the code be aware of it. 
 
-fruits=(mango banana orange grapes apple) --> correct
-fruits=("mango" "banana" "orange" "grapes" 1000) -->correct
+	fruits=(mango banana orange grapes apple) 		--> correct
+	fruits=("mango" "banana" "orange" "grapes" 1000) 	--> correct
+	fruits=(mango, banana, orange, apple) 			--> incorrect ( , aslo takes as charecter)
 
-fruits=(mango, banana, orange, apple) --> incorrect ( , aslo takes as charecter)
-
-${fruits[1]} --> array eliment position starts from (0 1 2 3) so...
-${fruits[@]} --> "@" "*" all eliments in an array
-${#fruits[@]} --> "#" will count of eliments in an array
+	${fruits[1]} 		--> array eliment position starts from (0 1 2 3) so...
+	${fruits[@]} 		--> "@" "*" all eliments in an array
+	${#fruits[@]} 		--> "#" will count of eliments in an array
 
 -----------------------------
+```
 #!/bin/bash
 fruits=(mango orange apple "sapota" santra 20 500)
 for fruit in ${fruits[@]}
@@ -222,112 +222,130 @@ do
 done
 echo "fruits count in array is"${#fruits[@]}	# it counts the number of eliments in an array: ${#fruits[@]} of array 
 echo "All fruits:" ${fruits[@]}			# it will print eliments in the array: ${fruits[@]}
+```
 --------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 quotes:
 --------------------------------------------------------------------------------------------------------------------
-we will be using differnt quotes in shell scripting like "", '', ``. each quote has its own perpose. so while using this we should be careful.
-"" --> will read the values of variables defined in the script and print the output of that variable
-'' --> will consider data between '' as a string so, it will not print the values of variable.
-`` --> is to execute a command we use this `` quotes. it will consider as a single command.
-$() --> will execute the command inside the () braces. same as ``. 
+we will be using differnt quotes in shell scripting like `( " ", '', ` ` )`. each quote has its own perpose. so while using this we should be careful.
+
+	"" 	--> will read the values of variables defined in the script and print the output of that variable
+	'' 	--> will consider data between ' ' as a string so, it will not print the values of variable.
+	`` 	--> is to execute a command we use this ` ` quotes. it will consider as a single command.
+	$() 	--> will execute the command inside the ( ) braces. same as ``. 
 
 ---------------------------
 quotes.sh
 ---------------------------
+```
 #!/bin/bash
 NAME="rajesh"
 YEAR=2022
 echo "$NAME" 
 echo '$YEAR'
 echo `date`
+```
 ----------------------------
 
 --------------------------------------------------------------------------------------------------------------------
 Variable:
 --------------------------------------------------------------------------------------------------------------------
-variables defined in the shell script are case sensitive, and it will only allow "_" while define the variable.
+variables defined in the shell script are case sensitive, and it will only allow `  _  ` while define the variable.
 
 1. case sensitive 
-2. only "_" is allowed, "-" not allowed 
-	exmple: 
-	----------
-	MISSION_NAME != mission_name	--> case sensitive
-	"mission_name"	-->  is correct
-	"mission-name" 	--> is incorrect
-
+2. only underscore ` _ ` is allowed, ` - ` not allowed 
+```
+MISSION_NAME != mission_name	--> case sensitive
+"mission_name"			-->  is correct
+"mission-name" 			--> is incorrect
+```
 3. no space while defining the variable
-	exmple:
-	-----------
-	A=10 --> correct
-	B=20 --> correct
-	Name="raj" --> correct 
+```
+A=10 		--> correct
+B=20 		--> correct
+Name="raj" 	--> correct 
 
-	Name = "kumar" --> incorrect
-	A = 10 --> incorrect
-	B = 20 --> incorrect
-
+Name = "kumar" 	--> incorrect
+A = 10 		--> incorrect
+B = 20 		--> incorrect
+```
 --------------------------------------------------------------------------------------------------------------------
 read
 --------------------------------------------------------------------------------------------------------------------
-to pass any user inputs to the script we need to use the keyword "read"
+to pass any user inputs to the script we need to use the keyword `read` keyword 
 
-echo --> is to print data 
-read --> is to input to a variable. 
-
-example:
-----------
-#!/bin/bash
-read -p " please enter your name: " NAME
-echo $NAME
+ 	echo 	--> is to print data 
+	read 	--> is to input a variable by enduser.
 
 read.sh
 -------------------------------------------
+```
 #!/bin/bash
-
 read -p " provide name: " NAME
 read -p " provide age: " AGE
-
 echo $NAME
 echo $AGE
-
+```
 --------------------------------------------------------------------------------------------------------------------
 Special Varibales:
 --------------------------------------------------------------------------------------------------------------------
 below are the special variables used to store the values. each variable is defined to store the specific value. 
 
-$* --> to store the arguments passed to the script ($1, $2, $3,...)
---------------------
+----------------------
+$* 
+----------------------
+to store the arguments passed to the script ($1, $2, $3,...). Output will come in new line 
+```
 #!/bin/bash
-
 echo "Using \$*:"
 for arg in "$*"; do
     echo "$arg"
 done
+```
 ---------------------
-
-$@ --> to store the arguments passed to the script ($1, $2, $3,...)
+$@ 
 ----------------------
+to store the arguments passed to the script ($1, $2, $3,...). Outut will come in single line.
+```
 #!/bin/bash
-
 echo "Using \$*:"
 for arg in "$@"; do
     echo "$arg"
 done
+```
 ----------------------
-
-$# --> to store the argument count passed the script
+$#
+----------------------
+```
+#!/bin/bash
+echo "using \$# and \#*"
+for arg in $*
+do 
+  echo "$arg"
+done
+echo " input argument count $#"
+```
 Note: if you specify " * " as script argument, that means it will take the file in that directory as arguments.
 
-$? --> to store the exit-code/value of last command exicuted
 --------------------------
-0: Success --> This code indicates that the previous command executed successfully without any errors.
-1: General error --> It is a generic error code that indicates something went wrong during the execution of the previous command.
-126: Command not executable. --> This code suggests that the command was not found or is not executable.
+$? 
 --------------------------
+to store the exit-code/value of last command exicuted use `$?`
 
-$$ --> to store the PID value of that script
+	0: Success 			--> This code indicates that the previous command executed successfully without any errors.
+	1: General error 		--> It is a generic error code that indicates something went wrong during the execution of the previous command.
+	126: Command not executable. 	--> This code suggests that the command was not found or is not executable.
+```
+#!/bin/bash
+ping localhost
+echo "
+```
+ 
+--------------------------
+$$ 
+--------------------------
+to store the PID value of that script
 
 $! --> to store the PID value of the last background job 
 ----------
