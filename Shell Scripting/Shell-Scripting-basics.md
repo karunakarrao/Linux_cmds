@@ -6,8 +6,8 @@
 $ bash -x script-name.sh 	--> to debug the script
 set -x 				--> inside the script is used to debug the script
 -----------
-#/bin/bash
-set -x 		--> enable Debug inside script
+#!/bin/bash
+set -x 		# --> enable Debug inside script
 -----------
 
 break, continue, do, done 	--> only meaningful in a `for` `while` and `until` loops
@@ -33,7 +33,7 @@ tee 		--> Imagine you want to store logs of an application into a file and at th
 ------------------------------------------------------------------------------------------------------------------
 Q. How to change the color of terminal promt and disply the path were you are now ?
 ------------------------------------------------------------------------------------------------------------------
-A. goto `.bashrc` and enter \u is 'user' \h is 'hostname' \w is working directory \$ is symbol. 
+A. goto `.bashrc` and \u is 'user' \h is 'hostname' \w is working directory \$ is symbol. 
 
 	PS1="\u@\h:\$(pwd)\$ "
 	PS1="\[\e[32m\]\u@\h:\w \[\e[36m\]\$(pwd)\[\e[0m\]\$ "
@@ -51,12 +51,11 @@ A. goto `.bashrc` and enter \u is 'user' \h is 'hostname' \w is working director
 ------------------------------------------------------------------------------------------------------------------
 env:
 ------------------------------------------------------------------------------------------------------------------
-to export environment variables for specific to directory, install "direnv" extention. this will allow you to export variables for that specific directory. 
+to export environment variables for specific to directory, install `direnv` package extention. this will allow you to export variables for that specific directory. 
 https://shivamarora.medium.com/a-guide-to-manage-your-environment-variables-in-a-better-way-using-direnv-2c1cd475c8e
 
-
  	$ sudo apt-get install direnv	--> install packages
- 	$ eval "$(direnv hook bash)"	--> add this in you ~/.bashrc
+ 	$ eval "$(direnv hook bash)"	--> add this line in ~/.bashrc file
   create your project directory `project1`, inside create `.envrc` file and update the file with your directory specific variables.
   	
   	$ touch .envrc			--> directory specific variables 
@@ -68,19 +67,20 @@ https://shivamarora.medium.com/a-guide-to-manage-your-environment-variables-in-a
 echo:
 --------------------------------------------------------------------------------------------------------------------
 to print data on the stdout, string or numberic data. 
---> A backslash "\" is used to escape special character meaning.
---> Encapsulating the variable name with ${} is used to avoid ambiguity
---> we can print the date using the date command and $(/bin/date +%Y-%m-%d)
+--> A backslash `\` is used to escape special character meaning.
+--> Encapsulating the variable name with `${}` is used to avoid ambiguity
+--> we can print the date using the date command and `$(/bin/date +%Y-%m-%d)`
 
 exmple:
 -------------------
+```
 #!/bin/bash
 echo "my age is 32"
 echo 'my name is raj'
 echo "The price of an Apple today is: \$HK $PRICE_PER_APPLE"
 echo "filename_$(/bin/date +%Y-%m-%d)" 
-echo ${#VAR1} 
-
+echo ${#VAR1} 	# VAR1 variable charecter count 
+```
 -------------------------------------------------------------------------------------------------------------------
 Date:
 -------------------------------------------------------------------------------------------------------------------
@@ -88,103 +88,116 @@ date command is used in many places, there are some useful commands. for more us
 
 syntax: $ date -d "<$anystring>" +%y/%Y/%b/%B/%a/%A
 
-$ date -d "$year" +%Y		# o/p : 2023
-$ date -d "$day" +%B		# o/p : January
-$ date -d "$date1" +%A		# o/p : Sunday
-$ date "+%D"          		# Output: 10/11/17
-$ date "+%D %T"         	# Output:  10/11/17 16:13:27
-$ date "+%Y-%m-%d"      	# Output:  2017-10-11
-$ date "+%Y/%m/%d"      	# Output:  2017/10/11
-$ date "+%A %B %d %T %y"	# Output: Thursday October 07:54:29 12 17
+	$ date -d "$year" +%Y		# o/p : 2023
+	$ date -d "$day" +%B		# o/p : January
+	$ date -d "$date1" +%A		# o/p : Sunday
+	$ date "+%D"          		# Output: 10/11/17
+	$ date "+%D %T"         	# Output:  10/11/17 16:13:27
+	$ date "+%Y-%m-%d"      	# Output:  2017-10-11
+	$ date "+%Y/%m/%d"      	# Output:  2017/10/11
+	$ date "+%A %B %d %T %y"	# Output: Thursday October 07:54:29 12 17
+
+To set your local timezone for your terminal use `timedatectl` as below.
+
+	$ timedatectl list-timezones
+ 	$ timedatectl set-timezone Asia/Kolkata			--> This will change your timezone to your native time
 
 -------------------------------------------------------------------------------------------------------------------
 String:
 -------------------------------------------------------------------------------------------------------------------
 string operations like count, and other activities are 
 
-To count the length of the string:
------------------------------------
+To count the length of the string including spaces.
+---------------------------------------------------
+```
 #!/bin/bash
 STRING="this is a string"
 echo ${#STRING} 
-
-Output:
-
+```
 To prune string with position and length 
-----------------------------------------
+--------------------------------------------------
+```
 #!/bin/bash
 STRING="this is a string"
 POS=1
 LEN=3
 echo ${STRING:$POS:$LEN}	# ${STRING:1:4}
-
+```
 String replacement 
--------------------
+--------------------------------------------------
+```
 #!/bin/bash
 STRING="to be or not to be"
 echo ${STRING[@]/be/eat} 	# Replace first occurrence
 echo ${STRING[@]//be/eat}  	# Replace all occurrences of substring
 echo ${STRING[@]// not/}	# Delete all occurrences of substring
-
+```
 --------------------------------------------------------------------------------------------------------------------
 cut: command operations in shell script
 --------------------------------------------------------------------------------------------------------------------
 for cutting the string to get the desired output.
 
-$ cut -b 1-4 /etc/passwd		# -b byte
-$ cut -c -4 /etc/passwd			# -c colum
-$ cut -d : -f 1 /etc/passwd 		# -d delimitor, -f fields 
-$ cut -d " " -f 1 state.txt		# " " space as delimitor
-$ cut --complement -d : -f 1 /etc/passwd	# it will remove 1st delimitor field and print rest.
-$ cut -d " " -f 1,2 state.txt --output-delimiter='%'	# replace " " with % 
-$ cat /etc/passwd |cut -d : -f 1 | sort 	# sorted 
-$ cat /etc/passwd |cut -d : -f 1 | sort  -r 	# reverse order in sorting
+	$ cut -b 1-4 /etc/passwd			--> -b byte string from 1st postion to 4th position
+	$ cut -c -4 /etc/passwd				--> -c character from 1 to 4
+	$ cut -d : -f 1 /etc/passwd 			--> -d delimitor ":", -f fields First
+	$ cut -d " " -f 1 state.txt			--> " " space as delimitor
+ 
+	$ cut --complement -d : -f 1 /etc/passwd			--> it will remove 1st delimitor field and print rest.
+	$ cut -d ":" -f 1,2 /etc/passwd --output-delimiter='%'		--> replace " " with % 
+	$ cat /etc/passwd |cut -d : -f 1 | sort 			--> sorted 
+	$ cat /etc/passwd |cut -d : -f 1 | sort  -r 			--> reverse order in sorting
 
 --------------------------------------------------------------------------------------------------------------------
 sed: command operations in shell script:
--e : $ sed -e 's/class/room/g;s/name/age/g' test	--> -e for mutipule sed commands 
--i : $ sed -i 's/Centos/Linux/g' test			--> -i updating the same file
--i.back	: $ sed -i.backup 's/Centos/Linux/g' test	--> to backup existing file and do changes in original file
--f : 
 --------------------------------------------------------------------------------------------------------------------
-$ echo "my class is a good class, in my class every" |sed 's/class/room/' --> replaces first argument in a line
-$ sed 's/class/room/2' class.txt --> replaces first 2 occurences in a line
-$ sed 's/class/room/3' class.txt --> replaces first 3 occurences in a line
-$ sed 's/class/room/g' class.txt --> replaces all strings
-$ sed '3s/class/room/' class.txt --> replaces string in a specific line
-$ sed '1,3s/class/room/' class.txt	--> replaces from line 1 to 3 only
+	-e --> $ sed -e 's/class/room/g;s/name/age/g' test	--> -e for mutipule sed commands 
+	-i : $ sed -i 's/Centos/Linux/g' test			--> -i updating the same file
+	-i.back	: $ sed -i.backup 's/Centos/Linux/g' test	--> to backup existing file and do changes in original file
+	-f : 
 
-$ sed '1d' class.txt 	--> delete the 1st line
-$ sed '2d;4d;6d' class.txt	--> delete lines 2,4 and 6
-$ sed '/apple/d' fruits.txt	--> delete lines with string apple
-$ sed '/apple/!d' fruits.txt 	--> delete lines except string apple | invert delete
-$ sed '/^$/d' fruits.txt 	--> delete empty lines in a file
-
-$ sed -i 's/apple/banana/g' fruits.txt 	--> update the changes in the original file
-$ sed -i.backup 's/apple/bananna/g' fruits.txt --> update the original file with backup
-
-$ sed -e 's/class/room/g;s/name/age/g' class.txt  --> execute mutiple sed commands.
-$ sed -i.bakup_`date +%Y-%m-%d` -e 's/Centos/Linux/g;s/sandbox/mybox/g' test	--> mutiple sed commands with backup file
+	$ echo "my class is a good class, in my class every" |sed 's/class/room/' --> replaces first argument in a line
+ 
+	$ sed 's/class/room/2' class.txt 	--> replaces first 2 occurences in a line
+	$ sed 's/class/room/3' class.txt 	--> replaces first 3 occurences in a line
+	$ sed 's/class/room/g' class.txt 	--> replaces all strings matching "Class" with "room"
+	$ sed '3s/class/room/' class.txt 	--> replaces string in a specific line
+	$ sed '1,3s/class/room/' class.txt	--> replaces from line 1 to 3 only
+	
+	$ sed '1d' class.txt 		--> delete the 1st line
+	$ sed '2d;4d;6d' class.txt	--> delete lines 2,4 and 6
+	$ sed '/apple/d' fruits.txt	--> delete lines with string apple
+	$ sed '/apple/!d' fruits.txt 	--> delete lines except string apple | invert delete
+	$ sed '/^$/d' fruits.txt 	--> delete empty lines in a file
+	
+	$ sed -i 's/apple/banana/g' fruits.txt 		--> update the changes in the original file
+	$ sed -i.backup 's/apple/bananna/g' fruits.txt 	--> update the original file and take backup of original file.
+	
+	$ sed -e 's/class/room/g;s/name/age/g' class.txt  				--> execute mutiple sed commands.
+	$ sed -i.bakup_`date +%Y-%m-%d` -e 's/Centos/Linux/g;s/sandbox/mybox/g' test	--> mutiple sed commands with backup file
 
 --------------------------------------------------------------------------------------------------------------------
 awk: command operations in shell script
-
-NR: NR command keeps a current count of the number of input records.
-NF: NF command keeps a count of the number of fields within the current input record. 
-$NF: prints value on that position 
 --------------------------------------------------------------------------------------------------------------------
+	NR --> NR command keeps a current count of the number of input records.
+	NF --> NF command keeps a count of the number of fields within the current input record. 
+	$NF --> prints value on that position 
+ 	$0 --> entire line 
+	$1 --> 1st colum
+ 	$2 --> 2nd colum
 
-$ awk '{print}' test.txt  	--> it will work like cat command
-$ awk '{print $1}' test.txt 	--> prints 1st coloum
-$ awk '{print $2}' test.txt 	--> prints 2nd coloum
 
-$ awk '!/Linux/ {print}' test.txt	--> prints lines doesn't contain word "Linux" 
-$ awk '/Linux/ {print}' test.txt	--> lines contain word "Linux"
-
-$ awk '{print NR, $0}' test.txt   --> prints lines with numbers
-$ awk '{print $1, $NF}' test.txt  --> prints 1st coloum and $NF value which is last coloum
-$ awk 'NR==3, NR==6 {print NR,$0}' employee.txt --> print lines from 3 to 6
-$ awk '{print NR "- " $1 }' geeksforgeeks.txt 	
+	$ awk '{print}' test.txt  	--> it will work like cat command
+	$ awk '{print $1}' test.txt 	--> prints 1st coloum
+	$ awk '{print $2}' test.txt 	--> prints 2nd coloum
+	
+	$ awk '!/Linux/ {print}' test.txt	--> prints lines doesn't contain word "Linux" 
+	$ awk '/Linux/ {print}' test.txt	--> lines contain word "Linux"
+	
+	$ awk '{print NR, $0}' test.txt   	--> prints lines with numbers
+	$ awk '{print $1, $NF}' test.txt  	--> prints 1st coloum and $NF value which is last coloum
+ 
+	$ awk 'NR==3, NR==6 {print NR,$0}' employee.txt 	--> print lines from 3 to 6
+	$ awk '{print NR "- " $1 }' geeksforgeeks.txt 		--> number lines with 
 
 --------------------------------------------------------------------------------------------------------------------
 array: 
