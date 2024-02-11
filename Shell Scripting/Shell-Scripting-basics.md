@@ -295,7 +295,7 @@ below are the special variables used to store the values. each variable is defin
 ----------------------
 $* 
 ----------------------
-to store the arguments passed to the script ($1, $2, $3,...). Output will come in new line 
+to store the `arguments passed` to the script ($1, $2, $3,...). Output will come in new line.
 ```
 #!/bin/bash
 echo "Using \$*:"
@@ -306,7 +306,7 @@ done
 ---------------------
 $@ 
 ----------------------
-to store the arguments passed to the script ($1, $2, $3,...). Outut will come in single line.
+to store the `arguments passed` to the script ($1, $2, $3,...). Outut will come in single line.
 ```
 #!/bin/bash
 echo "Using \$*:"
@@ -317,9 +317,10 @@ done
 ----------------------
 $#
 ----------------------
+to store the `input argument count` passed to the script
 ```
 #!/bin/bash
-echo "using \$# and \#*"
+echo "using \$# and \$*"
 for arg in $*
 do 
   echo "$arg"
@@ -331,7 +332,7 @@ Note: if you specify " * " as script argument, that means it will take the file 
 --------------------------
 $? 
 --------------------------
-to store the exit-code/value of last command exicuted use `$?`
+to store the `exit-code`/value of last command exicuted use `$?`
 
 	0: Success 			--> This code indicates that the previous command executed successfully without any errors.
 	1: General error 		--> It is a generic error code that indicates something went wrong during the execution of the previous command.
@@ -349,7 +350,7 @@ fi
 --------------------------
 $$ 
 --------------------------
-to store the PID value of that script
+to store the `PID value` of that script
 ```
 #!/bin/bash
 echo "The PID of the current shell is: $$"
@@ -358,7 +359,7 @@ touch "testfile_$$"
 --------------------------
 $!  
 --------------------------
-to store the PID value of the last background job
+to store the `PID value` of the last background job
 ```
 #!/bin/bash
 sleep 10 &		# we use "&" to run in background.
@@ -402,7 +403,8 @@ if [ "$#" -eq 0 ] ;
 then
 	echo -e "No argument."
 	echo -e "Write a number between 1 and 12."
-	exit 1			# Job failed and exited from script.
+
+	exit 1		# Job failed and exited from script.
 fi
 ```
 Note: You use exit 1 to indicate that an error occurred during the execution of your script. In shell scripting, exit 1 is a command used to exit a script with an error status. 
@@ -423,7 +425,7 @@ echo $(expr $A \* $B)
 echo `expr $A / $B`
 ```
 -----------------------
-3. if we write arthemetic operators between "((  ))" we can write freely
+3. if we write arthemetic operators between "((  ))", we can write freely
 -----------------------
 ```
 A=10
@@ -433,9 +435,10 @@ echo $((A+B)) | echo $((A - B))| echo $(( A * B))
 -----------------------
 4. for float caliculation need to use package tool "bc"
 -----------------------
+```
 echo $((22/7)) 		--> o/p: 3 
 echo 22/7 |bc -l 	--> o/p: 3.14285714285714285714
-
+```
 --------------------------------------------------------------------------------------------------------------------
 Conditional Logic:
 --------------------------------------------------------------------------------------------------------------------
@@ -494,25 +497,19 @@ if you want to check mutiple condictions we can use
 "NOT" -> -n -> "!"
 
 cond1 && cond2 && cond3
-or
+(or)
 cond1 -a cond2 -a cond3 
-or
-cond 
+(or)
+cond1 || cond2 || cond3
 
-example:
-----------------------
-if [ ]
-then
- ....
-else
- .....
-fi
 example:
 -------------------
-if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] ; then
+```
+if [[ $VAR_A[0] -eq 1 && ($VAR_B = "bee" || $VAR_T = "tee") ]] 
+then
     command...
 fi
-
+```
 --------------------------------------------------------------------------------------------------------------------
 if:
 --------------------------------------------------------------------------------------------------------------------
@@ -520,54 +517,56 @@ if is a conditional statement, to check the conditon is met then the logic will 
 
 1. conditions are writen in [ ]
 2. must use space between conditions and braces
-	example:
 	`if [ $A -gt $B ]`
 3. if we have multiple conditions we can user `[[ ]]` and 
-	example:
-	`if [[ $A -gt $B && $A -lt $C ]] `--> and condition
-	`if [[ $A -gt $B || $A -lt $C ]] `--> or condition 
+	`if [[ $A -gt $B && $A -lt $C ]] `	--> and condition
+	`if [[ $A -gt $B || $A -lt $C ]] `	--> or condition 
 4. linus file operatios
-   
-	`[ -e FILE ]`--> if file exists
-	`[ -d FILE ]`--> if file exists and is a directory
-	`[ -s FILE ]`--> If file exists and has size greater than 0
-	`[ -x FILE ]`--> If the file is executable
-	`[ -w FILE ]`--> If the file is writeable
+	`[ -e FILE ]`	--> if file exists
+	`[ -d FILE ]`	--> if file exists and is a directory
+	`[ -s FILE ]`	--> If file exists and has size greater than 0
+	`[ -x FILE ]`	--> If the file is executable
+	`[ -w FILE ]`	--> If the file is writeable
 
 ------------------------------------------
 exmaple:1
 ------------------------------------------
-	if [ $rocket_status = "failed" ]
-	then
-		echo " Rocket debug is exicuting"
-	elif [ $rocket_status = "failed" ]
-	then
-		echo " Rocket launch successful"
-	else 
-		echo "the status is not failed or success"
-	fi
+```
+if [ $rocket_status = "failed" ]
+then
+	echo " Rocket debug is exicuting"
+elif [ $rocket_status = "failed" ]
+then
+	echo " Rocket launch successful"
+else 
+	echo "the status is not failed or success"
+fi
+```
 --------------------------------------------
 example:2
 --------------------------------------------
-	if [ -e filename ]
-	then
-		echo "file exists"
-	else
-		echo "file not exists"
-	fi
+```
+if [ -e filename ]
+then
+	echo "file exists"
+else
+	echo "file not exists"
+fi
+```
 --------------------------------------------
 example:3
 --------------------------------------------
 ```
-ping $IP
+read -p "Pinging host IP-Address:" IP
+ping -w  3 $IP
 if [ $? -eq 0]; then
-echo "command success"
+echo "ping is success"
 fi
 ```
 --------------------------------------------------------------------------------------------------------------------
 for: 
 --------------------------------------------------------------------------------------------------------------------
-for is used to check from the range
+for loop will run until the condition is True, otherwise it will run infinite times.
 	
 example:1
 ----------------------------------------
@@ -578,7 +577,6 @@ do
 done
 ```
 ---------------------------------------
-
 example:2
 --------------------------------------
 ```
@@ -588,7 +586,6 @@ do
 done
 ```
 ---------------------------------------
-
 example:3
 -------------------------------------
 ```
@@ -598,7 +595,6 @@ do
 done
 ```
 -------------------------------------
-
 example:4 we can write like below also
 -----------------------------------------
 ```
@@ -607,39 +603,44 @@ do
 	echo "$mission"
 done
 ```
-----------------------------------------
-
-example:5 : real time
+-------------------------------------
+example:5 
 -----------------------------
-for package in $(cat install-packages.txt)
-do
-	sudo apt-get –y install $package
-done
-------------------------------
-
-example:6 : real time
------------------------------
-for server in $(cat servers.txt)
-do
-	ssh $server "uptime"
-done
-------------------------------
-
-example:7 : real time
------------------------------
-for file in $(ls)
-do
-	echo Line count of $file is $(cat $file | wc -l)
-done
------------------------------
+```
 #!/bin/bash
-
 list=(1 2 3 4 5)
-
 for i in ${list[@]}
 do 
 	echo $i
 done
+```
+----------------------------------------
+example:5 : real time
+----------------------------------------
+```
+for package in $(cat install-packages.txt)
+do
+	sudo apt-get –y install $package
+done
+```
+------------------------------
+example:6 : real time
+-----------------------------
+```
+for server in $(cat servers.txt)
+do
+	ssh $server "uptime"
+done
+```
+------------------------------
+example:7 : real time
+-----------------------------
+```
+for file in $(ls)
+do
+	echo Line count of $file is $(cat $file | wc -l)
+done
+```
 
 --------------------------------------------------------------------------------------------------------------------
 while:
@@ -648,23 +649,25 @@ this loop will end only when the condition is satisfied else it will be an infin
 
 example:
 ------------------
+```
 while [ condition ]
 do 
 	<< logic ..>>
 done
-
+```
 example:
 -------------------
+```
 #!/bin/bash
 COUNT=4
 while [ $COUNT -gt 0 ]; do
   echo "Value of count is: $COUNT"
   COUNT=$(($COUNT - 1))
 done
-
---------------------------------------------------
+```
+-------------------------
+```
 #!/bin/bash
-
 while true
 do
 	echo "1. Shutdown"
@@ -686,6 +689,7 @@ do
 		continue
 	fi
 done
+```
 -----------------------------------------------------
 
 --------------------------------------------------------------------------------------------------------------------
@@ -695,6 +699,7 @@ we can use case statement in above script. The case statement in shell scripting
 
 example:1
 -----------------------------------------------
+```
 while true
 do 
 	echo "1. Shutdown"
@@ -710,6 +715,7 @@ do
 		*) continue ;;
 	esac
 done
+```
 --------------------------------------------
 
 exit code: can be find using "$?"
