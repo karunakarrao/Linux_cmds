@@ -338,32 +338,44 @@ to store the exit-code/value of last command exicuted use `$?`
 	126: Command not executable. 	--> This code suggests that the command was not found or is not executable.
 ```
 #!/bin/bash
-ping localhost
-echo "
+ping -w 3 192.168.1.10  
+if [ $? -eq 0 ]
+then
+  echo "server ping is successful"
+else
+  echo " server failed to ping EXIT-CODE: $?"
+fi
 ```
- 
 --------------------------
 $$ 
 --------------------------
 to store the PID value of that script
-
-$! --> to store the PID value of the last background job 
-----------
-sleep 10 &	--> we use "&" to run in background.
+```
+#!/bin/bash
+echo "The PID of the current shell is: $$"
+touch "testfile_$$"
+```
+--------------------------
+$!  
+--------------------------
+to store the PID value of the last background job
+```
+#!/bin/bash
+sleep 10 &		# we use "&" to run in background.
 background_pid=$!
 echo "$background_pid"
------------
-
-$0 --> to store script name
-$1 --> to store first argument as an input
-$2 --> to store second  argument
-$3 --> to store third argument
-
-$- --> command which is being executed previously.
+```
+--------------------------
+$0 	--> to store script name
+$1 	--> to store first argument as an input
+$2 	--> to store second  argument
+$3 	--> to store third argument
+-------------------------------
 
 ----------------------------
 Special-variable.sh
 ----------------------------
+```
 #!/bin/bash
 # this is to check how the special variables are used 
 
@@ -376,47 +388,53 @@ echo "Value stored in special variable"'$2': $2
 echo "Value stored in special variable"'$$': $$
 echo "Value stored in special variable"'$!': $!
 echo "Value stored in special variable"'$@': $@
----------------------------	
-echo -e "Line1\nLine2" --> if you add space in between them you are adding a space charecter. 
-echo -n "Hello-World" --> writes in same line
-
-eample: test.sh
-----------------
+```
+---------------------------
+```
+echo -e "Line1\nLine2" 	--> if you add space in between them you are adding a space charecter. 
+echo -n "Hello-World" 	--> writes in same line
+```
+----------------------------
+test.sh
+----------------------------
+```
 if [ "$#" -eq 0 ] ; 
 then
 	echo -e "No argument."
 	echo -e "Write a number between 1 and 12."
-	exit 1		# Job failed and exited from script.
+	exit 1			# Job failed and exited from script.
 fi
+```
+Note: You use exit 1 to indicate that an error occurred during the execution of your script. In shell scripting, exit 1 is a command used to exit a script with an error status. 
 
 --------------------------------------------------------------------------------------------------------------------
 Arithmetic:
 --------------------------------------------------------------------------------------------------------------------
 1. for arthemetic operation we user "expr" command. 
 2. we must use space between each variable +, -, *, /,^
-3. we can use $(expr --) or $((--))
-
-example:
+3. we can use $(expr   ) or $((   ))
 --------------------
+```
 A=10
 B=20 
 echo `expr $A + $B`
 echo $(expr $B - $A)
 echo $(expr $A \* $B)
 echo `expr $A / $B`
----------------------
+```
+-----------------------
 3. if we write arthemetic operators between "((  ))" we can write freely
-example:
------------------
+-----------------------
+```
 A=10
 B=20
 echo $((A+B)) | echo $((A - B))| echo $(( A * B))
+```
 -----------------------
 4. for float caliculation need to use package tool "bc"
-exmple:
---------------
-echo $((22/7)) --> o/p: 3 
-echo 22/7 |bc -l --> o/p: 3.14285714285714285714
+-----------------------
+echo $((22/7)) 		--> o/p: 3 
+echo 22/7 |bc -l 	--> o/p: 3.14285714285714285714
 
 --------------------------------------------------------------------------------------------------------------------
 Conditional Logic:
