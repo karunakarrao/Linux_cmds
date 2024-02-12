@@ -14,7 +14,7 @@ then
     else
         echo "values "
     fi
-elif [ -z $B || -z $A ]
+elif [[ -z $B || -z $A ]]
 then
     echo "A || B  is null"
 else
