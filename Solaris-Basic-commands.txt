@@ -1,198 +1,110 @@
 *****************************************************************
 			Solaris-Commands
 *****************************************************************
-$ echo $SHELL --> to check which shell you are in 
-
-$ pwd --->present working directory
-
-$ ls ---> list all files and directories
-
-$ ls -ltr--> list all files and directories with time stamp
-
-$ ls -lc --> list all files with actual time stamp
-
-$ ls -i file1 --> to see the inode value
-
-$ ls -ld */ --> it will list only directories 
-or
-$ ls -la |grep '^d' --> List dirctories + Hiden
-
-$ ls * ---> list all files and directories and their content
-
-$ cksum <filename> ---> checksum and count the bytes in a file. to verify the file copy over the network is completed successfully or not by chekcing the cksum value
+$ echo $SHELL 	--> to check which shell you are in 
+$ pwd 		-->present working directory
+$ ls 		--> list all files and directories
+$ ls -ltr	--> list all files and directories with time stamp
+$ ls -lc 	--> list all files with actual time stamp
+$ ls -i file1 	--> to see the inode value
+$ ls -ld */ 	--> it will list only directories 
+$ ls * 		--> list all files and directories and their content
+$ ls -la |grep '^d' 	--> List dirctories + Hiden
+$ cksum <filename> 	--> checksum and count the bytes in a file. to verify the file copy over the network is completed successfully or not by chekcing the cksum value
 -----------------------------------------------------------------------------------
 tree: list contents of directories in a tree-like format.
 
-$ tree -d --> Listing a directories
-
-$ tree -f --> listing the file with full path
-
-$ tree -if --> to remove the tree lines and give the output
-
+$ tree -d 	--> Listing a directories
+$ tree -f 	--> listing the file with full path
+$ tree -if 	--> to remove the tree lines and give the output
 $ tree software/ --> list the file in a directory
-
        -p     Print the protections for each file (as per ls -l).
-
        -s     Print the size of each file along with the name.
-
        -u     Print  the  username, or UID # if no username is available,
               of the file.
-
        -g     Print the group name, or GID # if no group name  is  avail-
               able, of the file.
-
        -d     List directories only.
-
        -f     Prints the full path prefix for each file.
 -----------------------------------------------------------------------------------
-$ touch file1 --> to create a file
-
-$ touch file1 file2 --> to create a mutipule files at a time
-
-$ cat file1 --> to view the file content
-
-$ cat > file1 --> to create a file1 and provide the content and press Ctrl + c
+$ touch file1 		--> to create a file
+$ touch file1 file2 	--> to create a mutipule files at a time
+$ cat file1 		--> to view the file content
+$ cat > file1 		--> to create a file1 and provide the content and press Ctrl + c
+$ cat /etc/shadow 	--> it will store the password info ( root permision )
 -----------------------------------------------------------------------------------
-$ mkdir dir1 -> to create a directory
-
-$ mkdir -p dir1/dir2/dir3 --> to create multipule directories at a time
+$ mkdir dir1 			--> to create a directory
+$ mkdir -p dir1/dir2/dir3 	--> to create multipule directories at a time
 -----------------------------------------------------------------------------------
-$ cp file1 file2 -> to copy the file1 to file2
-
-$ cp -p file1 file2 -> to copy the file with same time stamp( ls -lc) (-p will preserve time stamp)
-
-$ cp -r dir1 dir2 -> to copy the directory 
+$ cp file1 file2 	--> to copy the file1 to file2
+$ cp -p file1 file2 	--> to copy the file with same time stamp( ls -lc) (-p will preserve time stamp)
+$ cp -r dir1 dir2 	--> to copy the directory 
 -----------------------------------------------------------------------------------
-$ rm file1 -> to remove a file
-
-$ rm file1 file2 -> to remove multiple files at a time
-
-$ rmdir dir -> to remove the empty dirctory
-
-$ rm -ri dir1 --> it will recorcively delets the directories with interactive mode 
+$ rm file1 		--> to remove a file
+$ rm file1 file2 	--> to remove multiple files at a time
+$ rmdir dir 		--> to remove the empty dirctory
+$ rm -ri dir1 		--> it will recorcively delets the directories with interactive mode 
 -----------------------------------------------------------------------------------
-$ mv file1 file2 -> it will rename the dirctory with file2
-
-$ mv file1 dir/file2 -> it will move the file to dir/file2 dirctory
+$ mv file1 file2 	--> it will rename the dirctory with file2
+$ mv file1 dir/file2 	--> it will move the file to dir/file2 dirctory
 -----------------------------------------------------------------------------------
-$ du -h ---> to see the disk usage in human readable format fo a directory
-
-$ du -k -> to see the disk usage in kilobytes
+$ du -h 	--> to see the disk usage in human readable format fo a directory
+$ du -k 	--> to see the disk usage in kilobytes
 -----------------------------------------------------------------------------------
-$ which cmd-name --> to see the cmd location
-
-$ who ---> to see how many users loged to the solaris machine
-
-$ uptime-> time and the server started time and the totals time
-
-$ date --> to see the current date and time stap details
-
-$ finger -> to see how many users loged to the solaris machine
-
-$ id -> to see the uid and gid names
-
-$ who am i -> to see the user who is using
-
-$ who -r ---> to see the run level
-
-$ chkconfig --list --> to check run levels defined to users
-
+$ which cmd-name 	--> to see the cmd location
+$ who 		--> to see how many users loged to the solaris machine
+$ uptime	--> time and the server started time and the totals time
+$ date 		--> to see the current date and time stap details
+$ finger 	--> to see how many users loged to the solaris machine
+$ id 		--> to see the uid and gid names
+$ who am i 	--> to see the user who is using
+$ who -r 	--> to see the run level
+$ chkconfig --list 	--> to check run levels defined to users
 $ systemctl list-unit-files --> will give the status of services 
 -----------------------------------------------------------------------------------
-
-$write username -> to send a text to the user who is using the same system
-
-$ mail  -> to check the recived mails
-
-$ mail username/mailid --> to send a maill
-subject:
-cc:
-bcc:
-
+$ write username 	--> to send a text to the user who is using the same system
+$ mail  		--> to check the recived mails
+$ mail username/mailid 	--> to send a maill
+	subject:
+	cc:
+	bcc:
 $ paste file1 file2 file3 > file4 --> will past the files in the horizontal format..
 ------------------------------------------------------------------------------------
-$ cat /etc/shadow --> it will store the password info ( root permision )
-
-$ ps -ef | grep java --> to see all java processes
-
-$ ps -ef | grep httpd ---> to see all apahe processes
-
-$ ps -ef | grep 
-
-$ ps -ef | grep ssh | grep -v grep | awk '{print $2} --> it will print the 2nd position values
-
-$ PID=`ps -ef | grep ssh | grep -v grep | awk '{print $2}'`--> to assign to a variable 
-
-$ echo $PID --> to see the PID values
+$ ps -ef | grep java 	--> to see all java processes
+$ ps -ef | grep httpd 	--> to see all apahe processes
+$ ps -ef | grep ssh | grep -v grep | awk '{print $2} 		--> it will print the 2nd position values
+$ PID=`ps -ef | grep ssh | grep -v grep | awk '{print $2}'`	--> to assign to a variable 
+$ echo $PID 	--> to see the PID values
 ------------------------------------------------------------------------------------
-$ fuser -f file1.lok -> to see the lock file. (/usr/sbin)
-
-$ /usr/local/bin/lsof --> it will show the list of open files
-
+$ fuser -f file1.lok 	--> to see the lock file. (/usr/sbin)
+$ /usr/local/bin/lsof 	--> it will show the list of open files
 $ /usr/local/bin/lsof -i|grep portno  -->to will show all the open files for that particular port
-
 $ pwdx `lsof -i|grep 80|awk '{print $2}'` --> it will print the PID and location it is exicuted 
-
 ------------------------------------------------------------------------------------
-Syntax: tar <operation> [options]
-
-$ tar -cvf filename.b * --> it will tar all the file in that present directory
-
-$ tar -tvf filename.tar --> to list the content of the tar file
-
-$ tar -xvf filename.tar -> it will extract the tar files
-
-$ tar -uvf filename.tar abc.txt  -> to extract only selected files from the tar file
-
-$ tar -rvf filename.tar xyz.txt --> to append the files to tar file 
-
-$ tar -xvf test1.tar -C test1/ --> to extrace the tar file content in different directory path
+$ tar -cvf filename.b * 	--> it will tar all the file in that present directory
+$ tar -tvf filename.tar 	--> to list the content of the tar file
+$ tar -xvf filename.tar 	--> it will extract the tar files
+$ tar -uvf filename.tar abc.txt 	--> to extract only selected files from the tar file
+$ tar -rvf filename.tar xyz.txt 	--> to append the files to tar file 
+$ tar -xvf test1.tar -C test1/ 		--> to extrace the tar file content in different directory path
  
-       -k, --keep-old-files
-              keep existing files; don’t overwrite them from archive
-       -d, --diff, --compare
-              find differences between archive and file system
-       -r, --append
-              append files to the end of an archive
-       -t, --list
-              list the contents of an archive
-       -u, --update
-       --delete
-              delete from the archive (not for use on mag tapes!)
-       -p, --preserve-permissions
-              extract all protection information
-       --atime-preserve
-              don’t change access times on dumped files
-       --keep-newer-files
-              do not overwrite files which are newer than the archive
-       -K, --starting-file F
-              begin at file F in the archive
-       --owner USER
-              change owner of extraced files to USER
-       -Z, --compress, --uncompress
-              filter the archive through compress
-       -z, --gzip, --gunzip, --ungzip
-              filter the archive through gzip
-
-$ gzip filename --> to zip a file
-
-$ gzip -d filename -> to unzip the file
-
-$ gunzip filename -> to unzip the file
+$ gzip filename 	--> to zip a file
+$ gzip -d filename 	--> to unzip the file
+$ gunzip filename 	--> to unzip the file
 ------------------------------------------------------------------------------------
-$ ping -s ipaddress -> to know ip address or DNS name 
+$ ping localhost	
+$ ping -c 3 localhost	--> ping check for 3 times
+$ ping -w 3 localhost	--> ping check  deadline 3 attemts
 
 Usage: ping [-LRUbdfnqrvVaA] [-c count] [-i interval] [-w deadline]
             [-p pattern] [-s packetsize] [-t ttl] [-I interface or address]
             [-M mtu discovery hint] [-S sndbuf]
             [ -T timestamp option ] [ -Q tos ] [hop1 ...] destination
-
-
-$ nslookup ipaddress --> to DNS name
-
-$ nslookup google.com ---> it will show the ip address
-
-$ ifconfig -a ---> to see the ip configuration of the system (/usr/sbin)
+-------------------------------------------------------------------------------------
+$ nslookup ipaddress 	--> to DNS name
+$ nslookup google.com 	--> it will show the ip address
+-------------------------------------------------------------------------------------
+$ ifconfig -a 		--> to see the ip configuration of the system (/usr/sbin)
 
 o/p:
 -----
@@ -203,8 +115,7 @@ e1000g0: flags=1000843<UP,BROADCAST,RUNNING,MULTICAST,IPv4> mtu 1500 index 2
 ------------------------------------------------------------------------------------
 df:
 -----
-$ df -h 
--> to see the file system size ( in human readable format), like bellow it will show the details.
+$ df -h 	--> to see the file system size ( in human readable format), like bellow it will show the details.
 
 Filesystem             size   used  avail capacity  Mounted on
 ------------------------------------------------------------------------------------
@@ -216,9 +127,6 @@ mnttab                   0K     0K     0K     0%    /etc/mnttab
 swap                   3.1G   984K   3.1G     1%    /etc/svc/volatile
 objfs                    0K     0K     0K     0%    /system/object
 sharefs                  0K     0K     0K     0%    /etc/dfs/sharetab
-/dev/dsk/c0t0d0s6      6.0G   3.4G   2.5G    58%    /usr
-/usr/lib/libc/libc_hwcap1.so.1
-                       6.0G   3.4G   2.5G    58%    /lib/libc.so.1
 fd                       0K     0K     0K     0%    /dev/fd
 /dev/dsk/c0t0d0s1      2.9G   1.2G   1.7G    41%    /var
 /dev/dsk/c0t0d0s4       10G   349M   9.8G     4%    /tmp
@@ -226,16 +134,14 @@ swap                   3.1G    32K   3.1G     1%    /var/run
 /dev/dsk/c0t0d0s5       38G    10G    27G    28%    /opt
 /dev/dsk/c0t0d0s7      4.2G   4.3M   4.1G     1%    /export/home
 
-$ df -k -> to see the file system size in kilo bytes
+$ df -k 	--> to see the file system size in kilo bytes
 --------------------------------------------------------------------------------------
 chmod:(ugoa -->user,group,other,all)(rwxXsStT)
--------
 
-$ chmod u+rwx filename 
-$ chmod -R ugo+rw <file/directory> --> to change the permissions of all users, it will only add the permissions, it will not remove any permissions. 
-or
-$ chmod -R a+rw <file/directory> --> you can wrinte like this aslo 
-
+$ chmod u+rwx filename 			--> giving user with read +  write + executable permissions
+$ chmod -R ugo+rw <file/directory> 	--> to change the permissions of all users, it will only add the permissions, it will not remove any permissions. 
+$ chmod -R a+rw <file/directory> 	--> you can wrinte like this aslo 
+--------------------------------------------------------------------------------------
 The setuid (set user id) is a permission bit, that allows the users to exec a program with the permissions of its owner. 
 setUID:(rwS------/rws------) (s--> user has the 'x' exicutable permissions)(S --> user don't have exicutable permissions)
 ----------------------------
@@ -263,7 +169,7 @@ $chmod 1644 <filename> --> it will set the stickybit permission to a file
 -rw-r--r-t 1 oracle oinstall 124 Aug 13 11:24 script1.sh--> have exicutable permissions
 -rw-r--r-T 1 oracle oinstall 124 Aug 13 11:24 script1.sh--> don't have exicutable permissions
 
-$ chmod 777 file1 --> to provide read+write+exec permissions for all
+	$ chmod 777 file1 --> to provide read+write+exec permissions for all
 
 r=4,w=2,x=1 this is the values for read, write, exec permissions
 
@@ -285,7 +191,7 @@ $ vi /etc/cron.d/cron.allow
 we need to export the editor to edit the crontab
 
 $ EDITOR=vi
-$ exprot EDITOR
+$ export EDITOR
 
 $ crontab -l ---> to list the crontab entries
 
@@ -330,18 +236,13 @@ $ kill -5 pid ---> debug the signal
 
 $ kill -9 pid ----> to kill the process
 ------------------------------------------------------------------------------------
-tail:
-------
-tail command is used to see the updates of the file content 
+tail:  tail command is used to see the updates of the file content 
 
-$ tail -f file1 ----> to see the bottom 10 lines of the file
-
-$ tail -50f file1 ---> to see the bottom 50 lines
-
-$ head  file1 --> to see the 10 header lines
+$ tail -f file1 	--> to see the bottom 10 lines of the file
+$ tail -50f file1 	--> to see the bottom 50 lines
+$ head  file1 		--> to see the 10 header lines
 ------------------------------------------------------------------------------------
 top:	$ top
------
 
  like the bellow deatils we can see by using the top command
 
@@ -356,9 +257,7 @@ Memory: 1702M phys mem, 1315M free mem, 2048M total swap, 2048M free swap
    522 root       7  59    0 3488K 1988K sleep    0:00  0.01% devfsadm
    396 root       1  59    0 1472K  724K sleep    0:00  0.00% utmpd
 ------------------------------------------------------------------------------------
-prtstat:
----------
-it is also used to see the cpu utilization 
+prtstat:  it is also used to see the cpu utilization 
 
 $ prtstat
 
@@ -377,12 +276,11 @@ $ prtstat
    630 root     3300K 1804K sleep   59    0   0:00:00 0.0% dmispd/1
 
 -----------------------------------------------------------------------------------
-prtdiag:
---------
+prtdiag: it will print the dignastic info, the system using that information & error msg
 
 $ prtdiag
 
-it will print the dignastic info, the system using that information & error msg
+
 
 if any type of issues occur it will showing 
 
@@ -440,9 +338,8 @@ o/p:
 scp:
 ----
 
-$ scp file4 chandu@192.168.1.220:/opt/app/karna -->copy file to remote server
-
-$ scp karna@192.168.1.220:/opt/app/karna/file1 . -> it will copy file1 to home directory
+$ scp file4 chandu@192.168.1.220:/opt/app/karna 	-->copy file to remote server
+$ scp karna@192.168.1.220:/opt/app/karna/file1 . 	--> it will copy file1 to home directory
 
 ------------------------------------------------------------------------------------
 
@@ -478,9 +375,8 @@ sort:
 ------
 to sort a file 
 
-$ sort file1 -> asending order
-
-$ sort -r file1 ->desending order
+$ sort file1 		--> asending order
+$ sort -r file1 	-->desending order
 
 $ sort -u file1 -> to eliminate duplicates
 
