@@ -54,6 +54,7 @@ env:
 to export environment variables for specific to directory, install `direnv` package extention. this will allow you to export variables for that specific directory. 
 https://shivamarora.medium.com/a-guide-to-manage-your-environment-variables-in-a-better-way-using-direnv-2c1cd475c8e
 
+
  	$ sudo apt-get install direnv	--> install packages
  	$ eval "$(direnv hook bash)"	--> add this line in ~/.bashrc file
   create your project directory `project1`, inside create `.envrc` file and update the file with your directory specific variables.
@@ -67,9 +68,10 @@ https://shivamarora.medium.com/a-guide-to-manage-your-environment-variables-in-a
 echo:
 --------------------------------------------------------------------------------------------------------------------
 to print data on the stdout, string or numberic data. 
---> A backslash `\` is used to escape special character meaning.
---> Encapsulating the variable name with `${}` is used to avoid ambiguity
---> we can print the date using the date command and `$(/bin/date +%Y-%m-%d)`
+. A backslash `\` is used to escape special character meaning.
+. Encapsulating the variable name with `${}` is used to avoid ambiguity
+. for variables use `${ }`, for commands use `$( )` to execute.
+. we can print the date using the date command and `$(/bin/date +%Y-%m-%d)`
 
 exmple:
 -------------------
@@ -79,7 +81,8 @@ echo "my age is 32"
 echo 'my name is raj'
 echo "The price of an Apple today is: \$HK $PRICE_PER_APPLE"
 echo "filename_$(/bin/date +%Y-%m-%d)" 
-echo ${#VAR1} 	# VAR1 variable charecter count 
+echo ${#VAR1} 	--> to count number of VAR1 variable charecters
+echo ${VAR1}string
 ```
 -------------------------------------------------------------------------------------------------------------------
 Date:
@@ -150,9 +153,9 @@ for cutting the string to get the desired output.
 --------------------------------------------------------------------------------------------------------------------
 sed: command operations in shell script:
 --------------------------------------------------------------------------------------------------------------------
-	-e --> $ sed -e 's/class/room/g;s/name/age/g' test	--> -e for mutipule sed commands 
-	-i : $ sed -i 's/Centos/Linux/g' test			--> -i updating the same file
-	-i.back	: $ sed -i.backup 's/Centos/Linux/g' test	--> to backup existing file and do changes in original file
+	-e :	 	$ sed -e 's/class/room/g;s/name/age/g' test		--> -e for mutipule sed commands 
+	-i :	 	$ sed -i 's/Centos/Linux/g' test			--> -i updating the same file
+	-i.back	: 	$ sed -i.backup 's/Centos/Linux/g' test			--> to backup existing file and do changes in original file
 	-f : 
 
 	$ echo "my class is a good class, in my class every" |sed 's/class/room/' --> replaces first argument in a line
@@ -169,8 +172,8 @@ sed: command operations in shell script:
 	$ sed '/apple/!d' fruits.txt 	--> delete lines except string apple | invert delete
 	$ sed '/^$/d' fruits.txt 	--> delete empty lines in a file
 	
-	$ sed -i 's/apple/banana/g' fruits.txt 		--> update the changes in the original file
-	$ sed -i.backup 's/apple/bananna/g' fruits.txt 	--> update the original file and take backup of original file.
+	$ sed -i 's/apple/banana/g' fruits.txt 			--> update the changes in the original file
+	$ sed -i.backup 's/apple/bananna/g' fruits.txt 		--> update the original file and take backup of original file.
 	
 	$ sed -e 's/class/room/g;s/name/age/g' class.txt  				--> execute mutiple sed commands.
 	$ sed -i.bakup_`date +%Y-%m-%d` -e 's/Centos/Linux/g;s/sandbox/mybox/g' test	--> mutiple sed commands with backup file
@@ -720,11 +723,11 @@ after exicuting every command we will get one exit code value which is used to c
 
 example:
 ------------------------
-$ ls ; echo $?; --> o/p: 0 | this will give the exit code for ls command
+	$ ls ; echo $?; 	--> o/p: 0 | this will give the exit code for ls command
 
 example:1
 --------------------
-$ lsss; echo $? --> o/p: >0 | failed 
+	$ lsss; echo $? 	--> o/p: >0 | failed 
 
 ------------------------------------------------------------------------------------------------------------
 "break" and "continue" statements:
@@ -733,6 +736,7 @@ $ lsss; echo $? --> o/p: >0 | failed
 
 example:
 ---------------------
+```
 # Prints out 0,1,2,3,4
 
 COUNT=0
@@ -754,11 +758,12 @@ while [ $COUNT -lt 10 ]; do
   fi
   echo $COUNT
 done
-
+```
 --------------------------------------------------------------------------------------------------------------------
 functions:
 --------------------------------------------------------------------------------------------------------------------
 how define a function to remove the duplication of code
+
 	1. function is defined as (ex: function function-name(){ << logic >> })
 	2. we can pass arguments in to function as $1 $2 and so on
 	3. we can that funcation using funcation name followed by arguments (ex: funcation-name $1 $2 )
@@ -771,6 +776,7 @@ function <function-name>(){
 ...
 }
 ---------------------------
+```
 #!/bin/bash
 
 # Function definition
@@ -778,12 +784,13 @@ greet() {
     echo "Hello, $1!"
     echo "How are you doing?"
 }
-
-# Function invocation
+# calling greet function 
 greet "$1"
+```
 ---------------------------
 example:1 
 -------------------------
+```
 function dir_check() {
     for name in $1
     do 
@@ -805,6 +812,7 @@ function dir_check() {
 
 dir_check $tm_dir_list $ndrx_home
 dir_check $qdata_dir_list $ndrx_home
+```
 -----------------------  
 
 --------------------------------------------------------------------------------------------------------------------
@@ -823,7 +831,7 @@ until:
 until loop is used to check till the condition is true. that means it will keep checking the givn condition is true. 
 The until statement in shell scripting is used to create a loop that continues executing a block of code until a specific condition becomes true. It is the opposite of the while loop, which executes the code block as long as the condition is true.
 
-------------------------------
+```
 #!/bin/bash
 echo -e " Please enter the 'IP' to check the 'Ping' status : "
 read -r IP
@@ -833,7 +841,9 @@ do
 	sleep 5
 done
 echo "$IP is now reachable"
+```
 ------------------------------
+```
 #!/bin/bash
 
 counter=1
@@ -843,7 +853,7 @@ do
     echo "Counter value: $counter"
     counter=$((counter + 1))
 done
----------------------------------
+```
 --------------------------------------------------------------------------------------------------------------------
 getopts
 --------------------------------------------------------------------------------------------------------------------
@@ -861,8 +871,8 @@ WARNING=90
 %d --> date
 %y --> year
 
-sh -x script.sh --> for debug
-shellcheck.net --> to check and debug the issues
+sh -x script.sh 	--> for debug
+shellcheck.net 		--> to check and debug the issues
 
 It often comes the situations that you want to catch a special signal/interruption/user input in your script to prevent the unpredictables.
 
