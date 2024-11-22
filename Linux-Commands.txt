@@ -10,6 +10,7 @@ $ whereis ansible 	--> to locate the binary location
 $ last reboot		--> last 5 system reboot times.
 
 $ script filename	--> to recording the output of your temrminal/putty
+$ ssh-copy-id -f -i ~/.ssh/id_rsa.pub -o StrictHostKeyChecking=no -o "IdentityFile ~/ansible.pem" ec2-user@ec2-18-117-148-174.us-east-2.compute.amazonaws.com
 
 
 RPM ( RedHat Package Manager)
